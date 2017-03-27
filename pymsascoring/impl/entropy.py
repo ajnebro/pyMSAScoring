@@ -1,4 +1,4 @@
 from pymsascoring.score import Score
 
-class Entropya (Score):
+class Entropy (Score):
     pass
