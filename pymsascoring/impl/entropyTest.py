@@ -1,3 +1,9 @@
+"""
+
+Author: Guillermo López
+
+"""
+
 import unittest
 import entropy
 
