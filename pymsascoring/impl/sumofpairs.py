@@ -14,7 +14,6 @@ This program is free software: you can redistribute it and/or modify
 """
 
 from pymsascoring.score import Score
-from pymsascoring.distancematrix.distancematrix import DistanceMatrix as DM
 import itertools
 
 
@@ -57,5 +56,4 @@ class SumOfPairs(Score):
         return final_score
 
     def calc_score(self, charA, charB):
-        # trick: the default value (i.e. if the key -pair of characters- is not present in the distance matrix) is the gap penalty
         return int(self.distancematrix.get_distance(charA, charB))
