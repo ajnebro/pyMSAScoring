@@ -84,7 +84,7 @@ class SumOfPairs(Score):
                 partial_score = self.calc_score(charA, charB)
                 final_score += + partial_score
                 print('Score of {0} and {1}: {2}'.format(charA, charB, partial_score, final_score))
-            column.clear()  # Limpio la lista para la siguiente columna
+            column.clear()  # clear the list for the next column
 
         print('Final score: {0}'.format(final_score))
         return final_score
