@@ -18,7 +18,7 @@ Once cloned, you can compile the software with the following command:
 ```
 
 ## License
-This project is licensed under the terms of the GNU - see the (https://github.com/ajnebro/pyMSAScoring/blob/master/LICENSE) file for details.
+This project is licensed under the terms of the GNU - see the [LICENSE](https://github.com/ajnebro/pyMSAScoring/blob/master/LICENSE) file for details.
 
 ## Authors
 * Maria José Muñoz - Project Manager
