@@ -17,10 +17,10 @@ Once cloned, you can compile the software with the following command:
 
 ```
 
-##License
+## License
 This project is licensed under the terms of the GNU - see the (https://github.com/ajnebro/pyMSAScoring/blob/master/LICENSE) file for details.
 
-##Authors
+## Authors
 * Maria José Muñoz - Project Manager
 * Miguel Ángel Gallardo - Sum Sart Test
 * Daniel Torres - Sum Star Code
