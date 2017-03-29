@@ -19,7 +19,7 @@ class Entropy (Score):
     def calculate_minimum_entropy(self):
         sum = 0                         #RETURN VALUE
         maxCol = 0                      #MAXIMUM COLUMNS FOR SEQUENCE
-        total_seqs = len(self.list)      #NUMBER OF SEQUENCES TO COMPARE
+        total_seqs = len(self.list)     #NUMBER OF SEQUENCES TO COMPARE
         
         
         # SET MAX COLUMN LENGTH
