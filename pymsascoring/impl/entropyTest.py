@@ -31,12 +31,12 @@ class EntropyTestCase(unittest.TestCase):
         recieved_value = round(self.ent.calculate_minimum_entropy(), 2)
         self.assertEqual(expected_value, recieved_value)
 
-    def test_should_entropy_of_three_seqs_return_minus_3_point_3(self):
-        print("Ejecutando test3")
-        msa = [("S1", "AAA"), ("S2", "CCC"), ("S3", "TTT")]
+    def test_should_entropy_of_three_seqs_with_gaps_return_minus_6_point_94(self):
+        print("Ejecutando test4")
+        msa = [("S1", "A-TGCAAT-G"), ("S2", "-CT-CCAT-A"), ("S3", "-TTAT-CTG-")]
         self.ent = entropy.Entropy(msa)
-        expected_value = -3.3
-        recieved_value = round(self.ent.calculate_minimum_entropy(), 1)
+        expected_value = -6.94
+        recieved_value = round(self.ent.calculate_minimum_entropy(), 2)
         self.assertEqual(expected_value, recieved_value)
 
 if __name__ == "__main__":
