@@ -4,7 +4,7 @@ from pymsascoring.distancematrix.impl.blosum62 import Blosum62
 from pymsascoring.impl.sumofpairs import SumOfPairs
 
 
-class TestMethods(unittest.TestCase):
+class SumOfPairsTestCase(unittest.TestCase):
 
     def setUp(self):
         print("setUp: INICIANDO TEST")
@@ -55,3 +55,7 @@ class TestMethods(unittest.TestCase):
                  '---')]
         final_score = SumOfPairs(seqs, matrix)
         self.assertEqual(3, final_score.calc_final_score())
+
+
+if __name__ == "__main__":
+    unittest.main()
