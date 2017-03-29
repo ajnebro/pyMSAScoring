@@ -1,5 +1,4 @@
 class DistanceMatrix:
-
     def __init__(self, gap_penalty=-8):
         self.gap_penalty = gap_penalty
 
@@ -12,8 +11,13 @@ class DistanceMatrix:
         elif char1 is '-' or char2 is '-':
             result = self.gap_penalty
         else:
-            result = self.distance_matrix((char1, char2))
+            matrix = self.get_distance_matrix()
+            if (char1, char2) in matrix:
+                v = matrix[(char1, char2)]
+            else:
+                v = matrix[(char2, char1)]
 
+            result = v
 
         return result
 
