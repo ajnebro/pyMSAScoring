@@ -4,7 +4,9 @@ Author: Pablo Rodríguez
 
 """
 
-from pymsascoring.score import Score
+import sys
+sys.path.append("../")
+from score import Score
 import math
 
 
