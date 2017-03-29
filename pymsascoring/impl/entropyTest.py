@@ -20,7 +20,7 @@ class EntropyTestCase(unittest.TestCase):
         msa = [("S1", "AAAA"), ("S2", "AAAA")]
         self.ent = entropy.Entropy(msa)
         expected_value = 0
-        recieved_value = self.ent.calculate_minimum_entropy()
+        recieved_value = self.ent.compute()
         self.assertEqual(expected_value, recieved_value)
 
     def test_should_entropy_of_four_seqs_return_minus_2_point_77(self):
@@ -28,7 +28,7 @@ class EntropyTestCase(unittest.TestCase):
         msa = [("S1", "ACGT"), ("S2", "ACGT"), ("S3", "TGCA"), ("S4", "TGCA")]
         self.ent = entropy.Entropy(msa)
         expected_value = -2.77
-        recieved_value = round(self.ent.calculate_minimum_entropy(), 2)
+        recieved_value = round(self.ent.compute(), 2)
         self.assertEqual(expected_value, recieved_value)
 
     def test_should_entropy_of_three_seqs_with_gaps_return_minus_6_point_94(self):
@@ -36,7 +36,7 @@ class EntropyTestCase(unittest.TestCase):
         msa = [("S1", "A-TGCAAT-G"), ("S2", "-CT-CCAT-A"), ("S3", "-TTAT-CTG-")]
         self.ent = entropy.Entropy(msa)
         expected_value = -6.94
-        recieved_value = round(self.ent.calculate_minimum_entropy(), 2)
+        recieved_value = round(self.ent.compute(), 2)
         self.assertEqual(expected_value, recieved_value)
 
 if __name__ == "__main__":
