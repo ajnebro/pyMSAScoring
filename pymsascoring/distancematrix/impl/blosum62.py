@@ -1,37 +1,12 @@
-"""
-This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-"""
-
-from pymsascoring.score import Score
-import itertools
+from pymsascoring.distancematrix.distancematrix import DistanceMatrix
 
 
-class SumOfPairs(Score):
-    """
-    get_seq_only        Get the second value of a list with multiple elements.
-    calc_score          Given two char, return the partial score.
-    calc_final_socre    Get the final score of the alignment.
+class Blosum62(DistanceMatrix):
 
-    @author             Antonio Benítez, René Betancor
-    """
-
-    def __init__(self, list, gap_penalty = -8):
-        self.list_of_pairs = list
-        self.gap_penalty = gap_penalty
-        self.values = [] # List for sequences
-        self.distancematrix = \
-          {('W', 'F'): 1, ('L', 'R'): -2, ('S', 'P'): -1, ('V', 'T'): 0, ('Q', 'Q'): 5, ('N', 'A'): -2, ('Z', 'Y'): -2,
+    def __init__(self, gap_penalty=-8):
+        super(Blosum62, self).__init__(gap_penalty)
+        self.distance_matrix = \
+         {('W', 'F'): 1, ('L', 'R'): -2, ('S', 'P'): -1, ('V', 'T'): 0, ('Q', 'Q'): 5, ('N', 'A'): -2, ('Z', 'Y'): -2,
           ('W', 'R'): -3, ('Q', 'A'): -1, ('S', 'D'): 0, ('H', 'H'): 8, ('S', 'H'): -1, ('H', 'D'): -1, ('L', 'N'): -3,
           ('W', 'A'): -3, ('Y', 'M'): -1, ('G', 'R'): -2, ('Y', 'I'): -1, ('Y', 'E'): -2, ('B', 'Y'): -3,
           ('Y', 'A'): -2,
@@ -77,33 +52,7 @@ class SumOfPairs(Score):
           ('T', 'S'): 1, ('I', 'E'): -3, ('P', 'M'): -2, ('M', 'K'): -1, ('I', 'A'): -1, ('P', 'I'): -3, ('R', 'R'): 5,
           ('X', 'M'): -1, ('L', 'I'): 2, ('X', 'I'): -1, ('Z', 'B'): 1, ('X', 'E'): -1, ('Z', 'N'): 0, ('X', 'A'): 0,
           ('B', 'R'): -1, ('B', 'N'): 3, ('F', 'D'): -3, ('X', 'Y'): -1, ('Z', 'R'): 0, ('F', 'H'): -1, ('B', 'F'): -3,
-          ('F', 'L'): 0, ('X', 'Q'): -1, ('B', 'B'): 4,
-          ('-', '-'): 1}
+          ('F', 'L'): 0, ('X', 'Q'): -1, ('B', 'B'): 4}
 
-    def get_seqs_only(self):
-        for i in range(len(self.list_of_pairs)):  # list_of_pairs = [('ID1', 'AB'), ('ID2', 'CD'), ('ID3', 'EF')]
-            self.values.append(self.list_of_pairs[i][1])  # values = ('AB', 'CD', 'EF' )
-        return self.values
-
-    def calc_final_score(self):
-        values = self.get_seqs_only()
-        column = []
-        tamSeq = len(values[0])  # length of the first sequence (= length to the second one, third one...)
-        final_score = 0
-
-        for k in range(tamSeq):
-            for value in values:
-                column.append(value[k])  # add to 'column' the K char of each sequence
-            print(column)  # column = ['A', 'C', 'E'] (the first time), ['-', 'D', '-'] (the second)
-            for charA, charB in itertools.combinations(column, 2):  # compare each element of the list 'column' with the others only one time
-                partial_score = self.calc_score(charA, charB)
-                final_score += + partial_score
-                print('Score of {0} and {1}: {2}'.format(charA, charB, partial_score, final_score))
-            column.clear()  # clear the list for the next column
-
-        print('Final score: {0}'.format(final_score))
-        return final_score
-
-    def calc_score(self, charA, charB):
-        # trick: the default value (i.e. if the key -pair of characters- is not present in the distance matrix) is the gap penalty
-        return int(self.distancematrix.get( (charA, charB), self.gap_penalty))
+    def get_distance_matrix(self):
+        return self.distance_matrix
