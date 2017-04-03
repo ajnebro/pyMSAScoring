@@ -12,69 +12,84 @@ This program is free software: you can redistribute it and/or modify
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-
-#from score import Score
-
+"""
+    ----------------------------
+    Author: Pablo Rodríguez
+    ----------------------------
 """
 
-Author: Pablo Rodríguez
 
-"""
-
-import sys
-sys.path.append("../")
-#from score import Score
 from pymsascoring.score import Score
 import math
 
-class Entropy (Score):
-    list=[]
-    
-    def __init__(self, l):
-        self.list=l
-    
-    def compute(self):
-        sum = 0                         #RETURN VALUE
-        maxCol = 0                      #MAXIMUM COLUMNS FOR SEQUENCE
-        total_seqs = len(self.list)      #NUMBER OF SEQUENCES TO COMPARE
-    
+class Entropy(Score):
+
+    def __init__(self):
+        pass
+
+    def compute(self, msa):
+        """
+        This function redefines the inherited function from Score (Parent Class).
+        From multiple alignment sequences, it calculates the score of the column similarity
+        using the Minimum Entropy formula.
+
+        Args:
+            msa - MSA list of tuples
+        Returns:
+            score - Total score of MSA after calculating Minimum Entropy for each column
+
+        """
+        n_cols = len(msa[0][1])                             # NUMBER OF CHARACTERS OF EVERY SEQUENCE
+        total_seqs = len(msa)                               # NUMBER OF SEQUENCES TO COMPARE
+        score = 0                                             # RETURN VALUE
+
+        for i in range(n_cols):
+            char_dict = self.get_dictionary(msa, i, total_seqs)
+            current_entropy = self.get_column_entropy(char_dict)
+            score+=current_entropy
         
-        # SET MAX COLUMN LENGTH
-        for item in self.list:
-            currLen = len(item[1])
-            if currLen > maxCol:
-                maxCol= currLen
-                
-        # CALCULATE ENTROPY FOR ALL CHARS IN SEQUENCE AND SUM TOTAL
-        for i in range(maxCol):
-            curr_chars = [0] * total_seqs                   #SET CURRENT CHAR LIST TO ZERO
-            
-            ### GET ALL CHARS FOR CURRENT POSITION
-            j=0                                             #SEQUENCE COUNTER FOR CURRENT CHAR ARRAY
-            for item in self.list:
-                curr_chars[j]=item[1][i]                    #SET CURRENT CHAR FOR SEQUENCE
-                j+=1
-                
-            ### CREATE DICTIONARY FOR CURRENT POSITION (KEY=CHAR, VALUE=ABSOLUTE FREQUENCY)
-            diff_chars = {}                                 #INIT DICTIONARY
-            for j in range(total_seqs):
-                if curr_chars[j] not in diff_chars:         #IF CHAR IS NOT IN DICT, CREATE KEY
-                    diff_chars[curr_chars[j]] = 1
-                else:
-                    diff_chars[curr_chars[j]] += 1          #ELSE ADD 1 TO VALUE FOR KEY
-            
-            ### CREATE (RELATIVE) FREQUENCIES FOR EACH KEY IN DICTIONARY
-            frequencies = []                                #INIT (RELATIVE) FREQUENCY LIST
-            for kv in diff_chars.items():
-                frequencies.append(kv[1]/total_seqs)        #GET (ABSOLUTE) FREQUENCY FOR KEY
-            
-            ### CALCULATE CURRENT COLUMN ENTROPY
-            current_entropy = 0
-            for f in frequencies:
-                #CALCULATE ENTROPY FOR CURRENT CHARACTER
-                current_entropy += f*math.log(f)
-            
-            #ADD CURRENT COLUMN ENTROPY TO SUM
-            sum+=current_entropy
-        
-        return sum
+        return score
+
+
+    def get_dictionary(self, list, pos, tot_seq):
+        """
+        Get Dictionary of characters for the MSA list at current position
+
+        Args:
+            list - MSA list of tuples
+            pos - Current column to be analyzed
+            tot_seq - Number of sequences in the MSA
+
+        Returns:
+            dict - Dictionary in which the Keys are characters and the Value is the frequency that key appears on the current column
+        """
+        dict = {}
+        curr_chars = [0] * tot_seq
+        j=0
+        for item in list:
+            curr_chars[j] = item[1][pos]
+            if curr_chars[j] not in dict:
+                dict[curr_chars[j]] = 1/tot_seq
+            else:
+                dict[curr_chars[j]] += 1 / tot_seq
+            j+=1
+
+        return dict
+
+    def get_column_entropy(self, dict):
+        """
+        Calculates the Minimum Entropy for the current column dictionary
+
+        Args:
+            dict - Dictionary in which the Keys are characters and the Value is the frequency that key appears on the current column
+
+        Returns:
+            current_entropy - Minimum Entropy score of the current column
+        """
+        current_entropy = 0
+
+        for k in dict.keys():
+            f = dict[k]
+            current_entropy += f * math.log(f)
+
+        return current_entropy
