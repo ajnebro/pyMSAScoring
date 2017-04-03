@@ -12,25 +12,20 @@ This program is free software: you can redistribute it and/or modify
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+"""
+    ----------------------------
+    Author: Pablo Rodríguez
+    ----------------------------
+"""
 
 from pymsascoring.score import Score
-
-"""
-
-Author: Pablo Rodríguez
-
-"""
-
-import sys
-sys.path.append("../")
-from score import Score
 import math
 
-class Entropy (Score):
-    list=[]
+class Entropy(Score):
+    list = []
     
     def __init__(self, l):
-        self.list=l
+        self.list = l
     
     def compute(self):
         sum = 0                                                 #RETURN VALUE
@@ -41,9 +36,10 @@ class Entropy (Score):
         for i in range(n_cols):
             curr_chars = [0] * total_seqs                       #SET CURRENT CHAR LIST TO ZERO
             
-            ### GET ALL CHARS FOR CURRENT POSITION
-            j=0                                                 #SEQUENCE COUNTER FOR CURRENT CHAR ARRAY
+            ### GET ALL CHARS FOR CURRENT POSITION AND
             ### CREATE DICTIONARY FOR CURRENT POSITION (KEY=CHAR, VALUE=RELATIVE FREQUENCY)
+            j=0                                                 #SEQUENCE COUNTER FOR CURRENT CHAR ARRAY
+            ###
             diff_chars = {}                                     # INIT DICTIONARY
             for item in self.list:
                 curr_chars[j]=item[1][i]                        #SET CURRENT CHAR FOR SEQUENCE
