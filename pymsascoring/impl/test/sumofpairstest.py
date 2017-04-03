@@ -15,46 +15,46 @@ class SumOfPairsTestCase(unittest.TestCase):
     def test_basic_score_of_12_with_PAM250(self):
         print("Ejecutando test1")
         matrix = PAM250()
-        seqs = [('ID1',
+        msa = [('ID1',
                  'AA'),
                 ('ID2',
                  'AA'),
                 ('ID3',
                  'AA')]
-        final_score = SumOfPairs(seqs, matrix)
-        self.assertEqual(12, final_score.calc_final_score())
+        final_score = SumOfPairs(matrix)
+        self.assertEqual(12, final_score.compute(msa))
 
     def test_basic_score_of_12_with_BLOSUM62(self):
         print("Ejecutando test2")
         matrix = Blosum62()
-        seqs = [('ID1',
+        msa = [('ID1',
                  'AA'),
                 ('ID2',
                  'AA'),
                 ('ID3',
                  'AA')]
-        final_score = SumOfPairs(seqs, matrix)
-        self.assertEqual(24, final_score.calc_final_score())
+        final_score = SumOfPairs(matrix)
+        self.assertEqual(24, final_score.compute(msa))
 
     def test_basic_score_with_gaps_BLOSUM62(self):
         print("Ejecutando test3")
         matrix = Blosum62()
-        seqs = [('ID1',
+        msa = [('ID1',
                  'FA'),
                 ('ID2',
                  'A-')]
-        final_score = SumOfPairs(seqs, matrix)
-        self.assertEqual(-10, final_score.calc_final_score())
+        final_score = SumOfPairs(matrix)
+        self.assertEqual(-10, final_score.compute(msa))
 
     def test_only_gaps_with_BLOSUM62(self):
         print("Ejecutando test4")
         matrix = Blosum62()
-        seqs = [('ID1',
+        msa = [('ID1',
                  '---'),
                 ('ID2',
                  '---')]
-        final_score = SumOfPairs(seqs, matrix)
-        self.assertEqual(3, final_score.calc_final_score())
+        final_score = SumOfPairs(matrix)
+        self.assertEqual(3, final_score.compute(msa))
 
 
 if __name__ == "__main__":
