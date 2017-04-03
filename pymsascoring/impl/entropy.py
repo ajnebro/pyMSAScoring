@@ -16,11 +16,10 @@ class Entropy (Score):
     def __init__(self, l):
         self.list=l
     
-    def calculate_minimum_entropy(self):
+    def compute(self):
         sum = 0                         #RETURN VALUE
         maxCol = 0                      #MAXIMUM COLUMNS FOR SEQUENCE
         total_seqs = len(self.list)     #NUMBER OF SEQUENCES TO COMPARE
-        
         
         # SET MAX COLUMN LENGTH
         for item in self.list:
