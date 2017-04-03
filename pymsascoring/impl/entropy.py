@@ -26,23 +26,23 @@ class Entropy(Score):
     def __init__(self):
         pass
 
-    
     def compute(self, msa):
         """
         This function redefines the inherited function from Score (Parent Class).
         From multiple alignment sequences, it calculates the score of the column similarity
             using the Minimum Entropy formula.
         """
-        n_cols = len(msa[0][1])                           # NUMBER OF CHARACTERS OF EVERY SEQUENCE
-        total_seqs = len(msa)                             # NUMBER OF SEQUENCES TO COMPARE
-        sum = 0                                                 # RETURN VALUE
+        n_cols = len(msa[0][1])                             # NUMBER OF CHARACTERS OF EVERY SEQUENCE
+        total_seqs = len(msa)                               # NUMBER OF SEQUENCES TO COMPARE
+        sum = 0                                             # RETURN VALUE
 
         for i in range(n_cols):
-            char_dict = get_dictionary(msa, i, total_seqs)
-            current_entropy = get_column_entropy(char_dict)
+            char_dict = self.get_dictionary(msa, i, total_seqs)
+            current_entropy = self.get_column_entropy(char_dict)
             sum+=current_entropy
         
         return sum
+
 
     def get_dictionary(self, list, pos, tot_seq):
         """
@@ -72,27 +72,3 @@ class Entropy(Score):
             current_entropy += f * math.log(f)
 
         return current_entropy
-
-"""
-curr_chars = [0] * total_seqs                       #SET CURRENT CHAR LIST TO ZERO
-
-            ### GET ALL CHARS FOR CURRENT POSITION AND
-            ### CREATE DICTIONARY (KEY=CHAR, VALUE=RELATIVE FREQUENCY)
-            j=0                                                 #SEQUENCE COUNTER FOR CURRENT CHAR ARRAY
-            ###
-            diff_chars = {}                                     # INIT DICTIONARY
-            for item in self.list:
-                curr_chars[j]=item[1][i]                        #SET CURRENT CHAR FOR SEQUENCE
-                if curr_chars[j] not in diff_chars:             #IF CHAR IS NOT IN DICT, CREATE KEY
-                    diff_chars[curr_chars[j]] = 1/total_seqs
-                else:
-                    diff_chars[curr_chars[j]] += 1/total_seqs   #ELSE ADD 1/TOTAL_SEQS TO VALUE FOR KEY
-                j+=1
-
-            ### CALCULATE CURRENT COLUMN ENTROPY
-            current_entropy = 0
-            for k in diff_chars.keys():
-                #CALCULATE ENTROPY FOR CURRENT CHARACTER
-                f = diff_chars[k]
-                current_entropy += f*math.log(f)
-"""
