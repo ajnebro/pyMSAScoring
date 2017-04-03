@@ -32,22 +32,37 @@ class Entropy(Score):
         This function redefines the inherited function from Score (Parent Class).
         From multiple alignment sequences, it calculates the score of the column similarity
         using the Minimum Entropy formula.
+
+        Args:
+            msa - MSA list of tuples
+
+        Returns:
+            score - Total score of MSA after calculating Minimum Entropy for each column
+
         """
         n_cols = len(msa[0][1])                             # NUMBER OF CHARACTERS OF EVERY SEQUENCE
         total_seqs = len(msa)                               # NUMBER OF SEQUENCES TO COMPARE
-        sum = 0                                             # RETURN VALUE
+        score = 0                                             # RETURN VALUE
 
         for i in range(n_cols):
             char_dict = self.get_dictionary(msa, i, total_seqs)
             current_entropy = self.get_column_entropy(char_dict)
-            sum+=current_entropy
+            score+=current_entropy
         
-        return sum
+        return score
 
 
     def get_dictionary(self, list, pos, tot_seq):
         """
         Get Dictionary of characters for the MSA list at current position
+
+        Args:
+            list - MSA list of tuples
+            pos - Current column to be analyzed
+            tot_seq - Number of sequences in the MSA
+
+        Returns:
+            dict - Dictionary in which the Keys are characters and the Value is the frequency that key appears on the current column
         """
         dict = {}
         curr_chars = [0] * tot_seq
@@ -65,6 +80,12 @@ class Entropy(Score):
     def get_column_entropy(self, dict):
         """
         Calculates the Minimum Entropy for the current column dictionary
+
+        Args:
+            dict - Dictionary in which the Keys are characters and the Value is the frequency that key appears on the current column
+
+        Returns:
+            current_entropy - Minimum Entropy score of the current column
         """
         current_entropy = 0
 
