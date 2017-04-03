@@ -5,7 +5,7 @@ __author__ = "Pablo Rodríguez"
 __copyright__ = ""
 __credits__ = ["Pablo Rodríguez", "Guillermo López"]
 __license__ = "GPL"
-__version__ = "1.0-SNAPSHOT"
+__version__ = "1.0"
 __status__ = "Development"
 __email__ = ["pabrod@uma.es", "guilopgar@uma.es"]
 
