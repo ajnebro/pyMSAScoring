@@ -16,7 +16,7 @@ class PercentageOfTotallyConservedColumnsTest(unittest.TestCase):
 
     def test_percentage_of_totally_conserved_columns(self):
         print("Executing Test1")
-        a = [["S1", "AAAA"], ["S2", "AAAA"]]
+        a = [["S1", "AdddAAA"], ["S2", "AdddAAA"]]
         self.per = PercentageOfTotallyConservedColumns(a)
         expected = 100
         result = self.per.percentage_of_totally_conserved_columns()

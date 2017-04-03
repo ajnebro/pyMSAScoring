@@ -13,12 +13,13 @@ class PercentageOfTotallyConservedColumns(Score):
     #We assume that all sequences have the same length if not so it will be analyzed only up to the length of the first
         count = 0
         h = 0
+        model=self.list[0]
     #Recorre each letter of the secuencies
-        while h < len(self.list[1]):
+        while h < len(model[1]):
             count2 = 0
         #Recorre each secuence
             for u in self.list:
-                temp = self.list[1]
+                temp = model[1]
                 temp2 = u[1]
                 #Comparing and count
                 if temp[h] == temp2[h] and temp2[h] != "-":
@@ -26,4 +27,4 @@ class PercentageOfTotallyConservedColumns(Score):
                     if count2 == len(self.list):
                         count += 1
             h += 1
-        return count / len(self.list[1]) * 100;
+        return count / len(model[1]) * 100;
