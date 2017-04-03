@@ -1,36 +1,41 @@
+
+from pymsascoring.score import Score    
 import operator
 from collections import Counter
-from Bio.SubsMat import MatrixInfo
-from pymsascoring.score import Score
 
 class Star(Score):
- SecuenciaEIdentificador = []
+    
+    def __init__(self, list, DM):
+        self.list_of_pairs = list
+        self.values = [] # List for sequences
+        self.distancematrix = DM
+        
+    def get_seqs_only(self):
+        for i in range(len(self.list_of_pairs)):  
+            self.values.append(self.list_of_pairs[i][1])  
+        return self.values
 
- def __init__(self,l):
-       self.SecuenciaEIdentificador = l
-
- def sumStar(self):
-
-        secuencias=[item[1] for item in self.SecuenciaEIdentificador]
+    def sumStar(self):
+    
+        secuencias=self.get_seqs_only() 
+        
+        
         posiciones=[]
         elementosMasFrecuentesyNumeroRepeticones=[]
         elementosMasFrecuentesyNumeroRepeticonesArreglada=[]
         SoloElementos=[]
         final=[]
-        resultado=0
-        matriz=MatrixInfo.blosum65
-
-
-
-        for secuencia in secuencias:
+        result=0
+        for secuencia in secuencias: # we select each list from our list of list
             for i,c1 in enumerate(secuencia):
-                posiciones.append((i,c1))
-
-        posicionSort=sorted(posiciones, key=operator.itemgetter(0))  #nos ordena la lista
-        list2=[item[1] for item in posicionSort] #creamos una lista de caracteres con la lista ordenada anteriormente
-        listaDeCaracteres=[list2[i:i+len(secuencias)] for i  in range(0, len(list2), len(secuencias))]#con esto creamos una lista por cada posicion para i=0 tendra 4 elementos J,A,G,T
-
-
+                posiciones.append((i,c1)) # we obtain for each element one position
+       
+        posicionSort=sorted(posiciones, key=operator.itemgetter(0))  #sort our list depending of the position
+        list2=[item[1] for item in posicionSort] # we build a new list using just the characters 
+        listaDeCaracteres=[list2[i:i+len(secuencias)] for i  in range(0, len(list2), len(secuencias))]#For each position we will group the elements.
+        
+                                 
+        #this select the most frecuence element for each position                     
         for x in listaDeCaracteres:
            a=Counter(x).most_common(1)
            elementosMasFrecuentesyNumeroRepeticones.append(a)
@@ -38,29 +43,24 @@ class Star(Score):
             for secuencia1 in secuencia:
                 elementosMasFrecuentesyNumeroRepeticonesArreglada.append((secuencia1))
         SoloElementos=[item[0] for item in elementosMasFrecuentesyNumeroRepeticonesArreglada]
-
-         #lista de los elementos mas frecuentes con el numero de veces que se repiten para i=0 el elementos que mas se repite es A y se repite dos veces y asi con todos
-
+               
+        #this will associate the most frecuence element with all the elements of the same position
+        
         for i,secuencias in enumerate(listaDeCaracteres):
             for caracteres in secuencias:
                 for j,masFrecuente in enumerate(SoloElementos):
                     if i==j:
                         final.append((masFrecuente,caracteres))
-
-        for i,j in final:
-             if i is '-' and j==i:
-                 resultado=resultado+1
-             if i  is '-' and j!=i:
-                 resultado=resultado-8
-             if j is '-' and i!=j:
-                 resultado=resultado-8
-
-
-        for i in final:
-            for key in matriz:
-
-                if i==key:
-                    resultado=resultado+ matriz[key]
-        return resultado
-
-
+        # We will obtain the score for each tuple
+        for tupla in final:
+             charA=tupla[0]
+             charB=tupla[1]
+             partial_score = self.calc_score(charA, charB)
+             result += + partial_scoreñ
+        return result
+    
+    def calc_score(self, charA, charB):
+        return int(self.distancematrix.get_distance(charA, charB))
+      
+                
+                
