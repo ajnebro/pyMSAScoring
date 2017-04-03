@@ -2,7 +2,7 @@ __author__ = "Antonio J. Nebro"
 __license__ = "GPL"
 __version__ = "1.0-SNAPSHOT"
 __status__ = "Development"
-__email__ = antonio@lcc.uma.es
+__email__ = "antonio@lcc.uma.es"
 
 class Score:
     """ Class representing MSA (Multiple Sequence Alignment) scores
