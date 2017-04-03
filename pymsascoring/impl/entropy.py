@@ -28,22 +28,16 @@ class Entropy(Score):
         self.list = l
     
     def compute(self):
-        """
-        This function redefines the inherited function from Score (Parent Class).
-        From multiple alignment sequences, it calculates the score of the column similarity
-            using the Minimum Entropy formula.
-        """
-
         sum = 0                                                 #RETURN VALUE
         n_cols = len(self.list[0][1])                           #NUMBER OF CHARACTERS OF EVERY SEQUENCE
         total_seqs = len(self.list)                             #NUMBER OF SEQUENCES TO COMPARE
-        
+
         # CALCULATE ENTROPY FOR ALL CHARS IN SEQUENCE AND SUM TOTAL
         for i in range(n_cols):
             curr_chars = [0] * total_seqs                       #SET CURRENT CHAR LIST TO ZERO
-            
+
             ### GET ALL CHARS FOR CURRENT POSITION AND
-            ### CREATE DICTIONARY (KEY=CHAR, VALUE=RELATIVE FREQUENCY)
+            ### CREATE DICTIONARY FOR CURRENT POSITION (KEY=CHAR, VALUE=RELATIVE FREQUENCY)
             j=0                                                 #SEQUENCE COUNTER FOR CURRENT CHAR ARRAY
             ###
             diff_chars = {}                                     # INIT DICTIONARY
