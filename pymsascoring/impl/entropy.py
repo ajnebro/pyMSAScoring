@@ -1,25 +1,13 @@
-"""
-This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-"""
-"""
-    ----------------------------
-    Author: Pablo Rodríguez
-    ----------------------------
-"""
-
 from pymsascoring.score import Score
 import math
+
+__author__ = "Pablo Rodríguez"
+__copyright__ = ""
+__credits__ = ["Pablo Rodríguez", "Guillermo López"]
+__license__ = "GPL"
+__version__ = "1.0-SNAPSHOT"
+__status__ = "Development"
+__email__ = ["pabrod@uma.es", "guilopgar@uma.es"]
 
 class Entropy(Score):
 
@@ -27,17 +15,14 @@ class Entropy(Score):
         pass
 
     def compute(self, msa):
-        """
+        """Compute minimum entropy for a MSA
+
         This function redefines the inherited function from Score (Parent Class).
         From multiple alignment sequences, it calculates the score of the column similarity
         using the Minimum Entropy formula.
 
-        Args:
-            msa - MSA list of tuples
-
-        Returns:
-            score - Total score of MSA after calculating Minimum Entropy for each column
-
+        :param msa: - MSA list of tuples
+        :return score: - Total score of MSA after calculating Minimum Entropy for each column
         """
         n_cols = len(msa[0][1])                             # NUMBER OF CHARACTERS OF EVERY SEQUENCE
         total_seqs = len(msa)                               # NUMBER OF SEQUENCES TO COMPARE
@@ -55,13 +40,11 @@ class Entropy(Score):
         """
         Get Dictionary of characters for the MSA list at current position
 
-        Args:
-            list - MSA list of tuples
-            pos - Current column to be analyzed
-            tot_seq - Number of sequences in the MSA
+        :param list: - MSA list of tuples
+        :param pos: - Current column to be analyzed
+        :param tot_seq: - Number of sequences in the MSA
 
-        Returns:
-            dict - Dictionary in which the Keys are characters and the Value is the frequency that key appears on the current column
+        :return dict: - Dictionary in which the Keys are characters and the Value is the frequency that key appears on the current column
         """
         dict = {}
         curr_chars = [0] * tot_seq
@@ -77,14 +60,11 @@ class Entropy(Score):
         return dict
 
     def get_column_entropy(self, dict):
-        """
-        Calculates the Minimum Entropy for the current column dictionary
+        """Calculates the Minimum Entropy for the current column dictionary
 
-        Args:
-            dict - Dictionary in which the Keys are characters and the Value is the frequency that key appears on the current column
+        :param dict: - Dictionary in which the Keys are characters and the Value is the frequency that key appears on the current column
 
-        Returns:
-            current_entropy - Minimum Entropy score of the current column
+        :return current_entropy: - Minimum Entropy score of the current column
         """
         current_entropy = 0
 
