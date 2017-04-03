@@ -27,24 +27,32 @@ __author__ = 'Antonio Benítez, René Betancor'
 class SumOfPairs(Score):
     """
     Class for returning the alignment score of >1 sequences given the substituion matrix..
-
-    get_seq_only        Get the second value of a list with multiple elements.
-    calc_score          Given two char, return the partial score.
-    calc_final_socre    Get the final score of the alignment.
     """
 
     def __init__(self, substitution_matrix):
-        self.substitution_matrix = substitution_matrix
+        self.substitution_matrix = substitution_matrix()
         self.sequences = [] # list of sequences
 
     def get_seqs_from_list_of_pairs(self, msa):
+        """
+        Get the second value of a list with multiple elements.
+        :param msa: List of pairs -id and sequence- (i.e. "[('ID1', 'AB'), ('ID2', 'CD'), ('ID3', 'EF')]" ).
+        :return: List of sequences (i.e. "('AB', 'CD', 'EF' )").
+        """
+
         logger.debug('List of pairs: {0}'.format(msa))
-        for i in range(len(msa)):  # list_of_pairs = [('ID1', 'AB'), ('ID2', 'CD'), ('ID3', 'EF')]
-            self.sequences.append(msa[i][1])  # sequences = ('AB', 'CD', 'EF' )
+        for i in range(len(msa)):
+            self.sequences.append(msa[i][1])
         logger.debug('List of sequences: {0}'.format(self.sequences))
         return self.sequences
 
     def compute(self, msa):
+        """
+        Compute the score of two or more sequences using the "Sum of Pairs" method.
+        :param msa: List of pairs -id and sequence- (i.e. "[('ID1', 'AB'), ('ID2', 'CD'), ('ID3', 'EF')]" ).
+        :return: List of sequences.
+        """
+
         logger.info('Computing score...')
         sequences = self.get_seqs_from_list_of_pairs(msa)
         tamSeq = len(sequences[0])  # length of the first sequence (= length to the second one, third one...)
@@ -67,4 +75,11 @@ class SumOfPairs(Score):
         return final_score
 
     def get_score(self, charA, charB):
+        """
+        Return the score of two chars using the substituion matrix.
+        :param charA: First char.
+        :param charB: Second char.
+        :return: Value of the score.
+        """
+
         return int(self.substitution_matrix.get_distance(charA, charB))
