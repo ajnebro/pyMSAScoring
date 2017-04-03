@@ -16,6 +16,9 @@ This program is free software: you can redistribute it and/or modify
 
 from pymsascoring.score import Score
 import itertools
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 __author__ = 'Antonio Benítez, René Betancor'
@@ -30,34 +33,38 @@ class SumOfPairs(Score):
     calc_final_socre    Get the final score of the alignment.
     """
 
-    def __init__(self, list_of_pairs, substitution_matrix):
-        self.list_of_pairs = list_of_pairs
+    def __init__(self, substitution_matrix):
+        self.substitution_matrix = substitution_matrix
         self.sequences = [] # list of sequences
-        self.sub_matrix = substitution_matrix
 
-    def get_seqs_only(self):
-        for i in range(len(self.list_of_pairs)):  # list_of_pairs = [('ID1', 'AB'), ('ID2', 'CD'), ('ID3', 'EF')]
-            self.sequences.append(self.list_of_pairs[i][1])  # values = ('AB', 'CD', 'EF' )
+    def get_seqs_from_list_of_pairs(self, msa):
+        logger.debug('List of pairs: {0}'.format(msa))
+        for i in range(len(msa)):  # list_of_pairs = [('ID1', 'AB'), ('ID2', 'CD'), ('ID3', 'EF')]
+            self.sequences.append(msa[i][1])  # sequences = ('AB', 'CD', 'EF' )
+        logger.debug('List of sequences: {0}'.format(self.sequences))
         return self.sequences
 
-    def calc_final_score(self):
-        sequences = self.get_seqs_only()
+    def compute(self, msa):
+        logger.info('Computing score...')
+        sequences = self.get_seqs_from_list_of_pairs(msa)
         tamSeq = len(sequences[0])  # length of the first sequence (= length to the second one, third one...)
+        logger.debug('Lengh of a sequence: {0}'.format(tamSeq))
         column = []
         final_score = 0
 
         for k in range(tamSeq):
             for sequence in sequences:
                 column.append(sequence[k])  # add to 'column' the k-char of each sequence
+            logger.debug('{0}-column: {1}'.format(k, column))
             #print(column)  # column = ['A', 'C', 'E'] (the first time), ['-', 'D', '-'] (the second)
             for charA, charB in itertools.combinations(column, 2):  # compare each element of the list 'column' with the others only one time
                 partial_score = self.get_score(charA, charB)
                 final_score += + partial_score
-                #print('Score of {0} and {1}: {2}'.format(charA, charB, partial_score, final_score))
+                logger.debug('Score of {0} and {1}: {2}'.format(charA, charB, partial_score))
             column.clear()  # clear the list for the next column
 
-        #print('Final score: {0}'.format(final_score))
+        logger.info('Final score: {0}'.format(final_score))
         return final_score
 
     def get_score(self, charA, charB):
-        return int(self.sub_matrix.get_distance(charA, charB))
+        return int(self.substitution_matrix.get_distance(charA, charB))
