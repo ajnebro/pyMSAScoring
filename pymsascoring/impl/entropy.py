@@ -37,8 +37,7 @@ class Entropy(Score):
 
 
     def get_dictionary(self, list, pos, tot_seq):
-        """
-        Get Dictionary of characters for the MSA list at current position
+        """Get Dictionary of characters for the MSA list at current position
 
         :param list: - MSA list of tuples
         :param pos: - Current column to be analyzed

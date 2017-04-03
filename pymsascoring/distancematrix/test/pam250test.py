@@ -59,6 +59,5 @@ class TestMethods(unittest.TestCase):
         with self.assertRaises(Exception):
             matrix.get_distance('J', 'A')
 
-
 if __name__ == '__main__':
     unittest.main()

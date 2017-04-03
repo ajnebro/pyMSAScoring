@@ -14,6 +14,46 @@ This program is free software: you can redistribute it and/or modify
 """
 
 from pymsascoring.score import Score
+import itertools
+
 
 class SumOfPairs(Score):
-    pass
+    """
+    get_seq_only        Get the second value of a list with multiple elements.
+    calc_score          Given two char, return the partial score.
+    calc_final_socre    Get the final score of the alignment.
+
+    @author             Antonio Benítez, René Betancor
+    """
+
+    def __init__(self, list, DM):
+        self.list_of_pairs = list
+        self.values = [] # List for sequences
+        self.distancematrix = DM
+
+    def get_seqs_only(self):
+        for i in range(len(self.list_of_pairs)):  # list_of_pairs = [('ID1', 'AB'), ('ID2', 'CD'), ('ID3', 'EF')]
+            self.values.append(self.list_of_pairs[i][1])  # values = ('AB', 'CD', 'EF' )
+        return self.values
+
+    def calc_final_score(self):
+        values = self.get_seqs_only()
+        column = []
+        tamSeq = len(values[0])  # length of the first sequence (= length to the second one, third one...)
+        final_score = 0
+
+        for k in range(tamSeq):
+            for value in values:
+                column.append(value[k])  # add to 'column' the K char of each sequence
+            #print(column)  # column = ['A', 'C', 'E'] (the first time), ['-', 'D', '-'] (the second)
+            for charA, charB in itertools.combinations(column, 2):  # compare each element of the list 'column' with the others only one time
+                partial_score = self.calc_score(charA, charB)
+                final_score += + partial_score
+                #print('Score of {0} and {1}: {2}'.format(charA, charB, partial_score, final_score))
+            column.clear()  # clear the list for the next column
+
+        #print('Final score: {0}'.format(final_score))
+        return final_score
+
+    def calc_score(self, charA, charB):
+        return int(self.distancematrix.get_distance(charA, charB))
