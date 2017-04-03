@@ -1,41 +1,26 @@
-"""
-This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-"""
-
-
 from pymsascoring.score import Score
 import itertools
 import logging
+
+__author__  = "Antonio Benítez, René Betancor"
+__license__ = "GPL"
+__version__ = "1.0-SNAPSHOT"
+__status__  = "Development"
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-__author__ = 'Antonio Benítez, René Betancor'
-
-
 class SumOfPairs(Score):
-    """
-    Class for returning the alignment score of >1 sequences given the substituion matrix..
-    """
+    """ Class for returning the alignment score of >1 sequences given the substituion matrix. """
 
     def __init__(self, substitution_matrix):
         self.substitution_matrix = substitution_matrix()
         self.sequences = [] # list of sequences
 
     def get_seqs_from_list_of_pairs(self, msa):
-        """
-        Get the second value of a list with multiple elements.
+        """ Get the second value of a list with multiple elements.
+
         :param msa: List of pairs -id and sequence- (i.e. "[('ID1', 'AB'), ('ID2', 'CD'), ('ID3', 'EF')]" ).
         :return: List of sequences (i.e. "('AB', 'CD', 'EF' )").
         """
@@ -47,8 +32,8 @@ class SumOfPairs(Score):
         return self.sequences
 
     def compute(self, msa):
-        """
-        Compute the score of two or more sequences using the "Sum of Pairs" method.
+        """ Compute the score of two or more sequences using the "Sum of Pairs" method.
+
         :param msa: List of pairs -id and sequence- (i.e. "[('ID1', 'AB'), ('ID2', 'CD'), ('ID3', 'EF')]" ).
         :return: List of sequences.
         """
@@ -64,7 +49,6 @@ class SumOfPairs(Score):
             for sequence in sequences:
                 column.append(sequence[k])  # add to 'column' the k-char of each sequence
             logger.debug('{0}-column: {1}'.format(k, column))
-            #print(column)  # column = ['A', 'C', 'E'] (the first time), ['-', 'D', '-'] (the second)
             for charA, charB in itertools.combinations(column, 2):  # compare each element of the list 'column' with the others only one time
                 partial_score = self.get_score(charA, charB)
                 final_score += + partial_score
@@ -75,8 +59,8 @@ class SumOfPairs(Score):
         return final_score
 
     def get_score(self, charA, charB):
-        """
-        Return the score of two chars using the substituion matrix.
+        """ Return the score of two chars using the substituion matrix.
+
         :param charA: First char.
         :param charB: Second char.
         :return: Value of the score.

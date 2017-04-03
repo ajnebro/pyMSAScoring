@@ -6,9 +6,7 @@ third course students of the degree on Bioinformatics of the E.T.S. de Ingenier�
 of the University of Málaga.
 
 ## Requirements
-To use PyMSA the following software packages are required:
-* [Anaconda](https://www.continuum.io/downloads)
-* [Git](https://git-scm.com/)
+PyMSA has been developed with Python 3.6.0 :: [Anaconda](https://www.continuum.io) 4.3.0 (x86_64)
 
 ## Score
 The scores that are currently available  are:
@@ -33,6 +31,7 @@ git clone https://github.com/ajnebro/pyMSAScoring.git
 * Pablo Rodríguez - Developer of the Entropy score
 * Guillermo López - Developer of the Entropy score
 * Juan Ignacio Álvarez - Developer of the of Non-Gaps score
+* Antonio J. Nebro - Technology support
 
 ## License
 This project is licensed under the terms of the GNU - see the [LICENSE](https://github.com/ajnebro/pyMSAScoring/blob/master/LICENSE) file for details.
