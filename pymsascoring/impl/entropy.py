@@ -24,6 +24,7 @@ import math
 class Entropy(Score):
 
     def __init__(self):
+        pass
 
     
     def compute(self, msa):
