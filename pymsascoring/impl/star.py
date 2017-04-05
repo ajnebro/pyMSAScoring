@@ -1,7 +1,7 @@
 from pymsascoring.score import Score
 import operator
 from collections import Counter
-__author__ = "Daniel Torres Ramírez"
+__author__ = "Daniel Torres Ramírez,Miguel Angel"
 __license__ = "GNU"
 __version__ = "1.0-SNAPSHOT"
 __status__ = "Development"
@@ -21,43 +21,44 @@ class Star(Score):
 
     def sumStar(self):
 
-        secuencias = self.get_seqs_only()
+        sequences = self.get_seqs_only()
 
-        posiciones = []
-        elementosMasFrecuentesyNumeroRepeticones = []
-        elementosMasFrecuentesyNumeroRepeticonesArreglada = []
-        SoloElementos = []
+        position = []
+        elementMoreFrecuentAndNumberOfRepetions=[]
+         
+        elementMoreFrecuentAndNumberOfRepetionsFixed = []
+        JustElement = []
         final = []
         result = 0
-        for secuencia in secuencias:  # we select each list from our list of list
-            for i, c1 in enumerate(secuencia):
-                posiciones.append((i, c1))  # we obtain for each element one position
+        for sequence in sequences:  # we select each list from our list of list
+            for i, c1 in enumerate(sequence):
+                position.append((i, c1))  # we obtain for each element one position
 
-        posicionSort = sorted(posiciones, key=operator.itemgetter(0))  # sort our list depending of the position
+        posicionSort = sorted(position, key=operator.itemgetter(0))  # sort our list depending of the position
         list2 = [item[1] for item in posicionSort]  # we build a new list using just the characters
-        listaDeCaracteres = [list2[i:i + len(secuencias)] for i in
-                             range(0, len(list2), len(secuencias))]  # For each position we will group the elements.
+        listOfCharacters = [list2[i:i + len(sequences)] for i in
+                             range(0, len(list2), len(sequences))]  # For each position we will group the elements.
 
         # this select the most frecuence element for each position
-        for x in listaDeCaracteres:
+        for x in listOfCharacters:
             a = Counter(x).most_common(1)
-            elementosMasFrecuentesyNumeroRepeticones.append(a)
-        for secuencia in elementosMasFrecuentesyNumeroRepeticones:
-            for secuencia1 in secuencia:
-                elementosMasFrecuentesyNumeroRepeticonesArreglada.append((secuencia1))
-        SoloElementos = [item[0] for item in elementosMasFrecuentesyNumeroRepeticonesArreglada]
+            elementMoreFrecuentAndNumberOfRepetions.append(a)
+        for sequence in elementMoreFrecuentAndNumberOfRepetions:
+            for sequence1 in sequence:
+                elementMoreFrecuentAndNumberOfRepetionsFixed.append((sequence1))
+        JustElement = [item[0] for item in elementMoreFrecuentAndNumberOfRepetionsFixed]
 
         # this will associate the most frecuence element with all the elements of the same position
 
-        for i, secuencias in enumerate(listaDeCaracteres):
-            for caracteres in secuencias:
-                for j, masFrecuente in enumerate(SoloElementos):
+        for i, sequences in enumerate(listOfCharacters):
+            for characters in sequences:
+                for j, moreFrecuent in enumerate(JustElement):
                     if i == j:
-                        final.append((masFrecuente, caracteres))
+                        final.append((moreFrecuent, characters))
         # We will obtain the score for each tuple
-        for tupla in final:
-            charA = tupla[0]
-            charB = tupla[1]
+        for tuple in final:
+            charA = tuple[0]
+            charB = tuple[1]
             partial_score = self.calc_score(charA, charB)
             result += + partial_score
         return result
