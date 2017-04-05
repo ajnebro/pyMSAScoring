@@ -30,10 +30,10 @@ class PercentageOfTotallyConservedColumns(Score):
         count = 0
         curr_char = 0
         model=self.list[0]
-    #Recorre each letter of the secuencies
+    #Iterate each letter of the secuencies
         while curr_char < len(model[1]):
             count2 = 0
-        #Recorre each secuence
+        #Iterate each secuence
             for current_sequence in self.list:
                 temp = model[1]
                 temp2 = current_sequence[1]
