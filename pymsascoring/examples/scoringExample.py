@@ -15,10 +15,15 @@ This program is intended to show some examples of using the scores in pyMSA.
 """
 
 def compute_score(score : Score, msa) -> float:
+    """
+    This function applies an score to a multiple sequence alignment
+    :param score: 
+    :param msa: 
+    :return: the score value
+    """
     return score.compute(msa)
 
 if __name__ == '__main__':
-
     msa = (("s1", "ACTG"), ("S2", "A-T-"))
 
     score_method = Entropy()
