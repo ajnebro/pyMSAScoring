@@ -33,5 +33,5 @@ class PercentageOfTotallyConservedColumnsTest(unittest.TestCase):
         result = self.per.percentage_of_non_gaps()
         self.assertEqual(result, expected)
 
-    if __name__ == '__main__':
-        unittest.main()
+if __name__ == '__main__':
+    unittest.main()

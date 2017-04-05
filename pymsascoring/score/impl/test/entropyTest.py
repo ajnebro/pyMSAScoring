@@ -30,7 +30,7 @@ class EntropyTestCase(unittest.TestCase):
 
         self.assertEqual(expected_value, received_value)
 
-    def test_get_dictionary_of_a_five_letter_colum(self):
+    def test_get_dictionary_of_a_five_letter_column(self):
         msa = [("S1", "-"), ("S2", "A"), ("S3", "C"), ("S4", "G"), ("S5", "T")]
         col = 0
         tot_seqs = 5
@@ -40,7 +40,7 @@ class EntropyTestCase(unittest.TestCase):
 
         self.assertEqual(expected_value, received_value)
 
-    def test_get_dictionary_of_a_gapped_colum(self):
+    def test_get_dictionary_of_a_gapped_column(self):
         msa = [("S1", "A-"), ("S2", "--"), ("S3", "T-"), ("S4", "--")]
         col = 1
         tot_seqs = 4
