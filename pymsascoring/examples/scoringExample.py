@@ -1,5 +1,5 @@
-from pymsascoring.distancematrix.impl.blosum62 import Blosum62
-from pymsascoring.distancematrix.impl.pam250 import PAM250
+from pymsascoring.substitutionmatrix.impl.blosum62 import Blosum62
+from pymsascoring.substitutionmatrix.impl.pam250 import PAM250
 from pymsascoring.score.impl.entropy import Entropy
 from pymsascoring.score.impl.sumofpairs import SumOfPairs
 from pymsascoring.score.score import Score

@@ -1,7 +1,7 @@
 
 import unittest
-from pymsascoring.distancematrix.impl.pam250 import PAM250
-from pymsascoring.distancematrix.impl.blosum62 import Blosum62
+from pymsascoring.substitutionmatrix.impl.pam250 import PAM250
+from pymsascoring.substitutionmatrix.impl.blosum62 import Blosum62
 from pymsascoring.score.impl.star import Star
 
 __author__ = "Miguel Angel, Daniel Torres Ramírez"
