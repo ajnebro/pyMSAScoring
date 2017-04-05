@@ -1,8 +1,8 @@
-from pymsascoring.score import Score
+from pymsascoring.score.score import Score
 import itertools
 import logging
 
-__author__  = "Antonio Benítez"
+__author__  = "Antonio Benitez"
 __license__ = "GPL"
 __version__ = "1.0-SNAPSHOT"
 __status__  = "Development"
@@ -14,8 +14,8 @@ logger = logging.getLogger(__name__)
 class SumOfPairs(Score):
     """ Class for returning the alignment score of >1 sequences given the substituion matrix. """
 
-    def __init__(self, DM):
-        self.substitution_matrix = DM
+    def __init__(self, substitution_matrix):
+        self.substitution_matrix = substitution_matrix
         self.sequences = [] # list of sequences
 
     def get_seqs_from_list_of_pairs(self, msa):
@@ -50,12 +50,12 @@ class SumOfPairs(Score):
             for sequence in sequences:
                 column.append(sequence[k])  # add to 'column' the k-char of each sequence
             logger.debug('{0}-column: {1}'.format(k, column))
-            final_score += self.calc_score_of_k_column(column)
+            final_score += self.get_score_of_k_column(column)
             column.clear()  # clear the list for the next column
 
         return final_score
 
-    def calc_score_of_k_column(self, column):
+    def get_score_of_k_column(self, column):
         """ Compare each element of the list 'column' with the others only one time.
 
         :param column: List of chars.
@@ -65,8 +65,8 @@ class SumOfPairs(Score):
         score_of_column = 0
 
         for charA, charB in self.possible_combinations(column):
-            score_of_column += self.get_score(charA, charB)
-            logger.debug('[-] Score of {0} and {1}: {2}'.format(charA, charB, self.get_score(charA, charB)))
+            score_of_column += self.get_score_of_two_chars(charA, charB)
+            logger.debug('[-] Score of {0} and {1}: {2}'.format(charA, charB, self.get_score_of_two_chars(charA, charB)))
 
         logger.debug('[-] Score of column: {0}'.format(score_of_column))
 
@@ -80,7 +80,7 @@ class SumOfPairs(Score):
         """
         return itertools.combinations(column, 2)
 
-    def get_score(self, charA, charB):
+    def get_score_of_two_chars(self, charA, charB):
         """ Return the score of two chars using the substituion matrix.
 
         :param charA: First char.
