@@ -2,9 +2,9 @@ import unittest
 
 from pymsascoring.distancematrix.impl.blosum62 import Blosum62
 from pymsascoring.distancematrix.impl.pam250 import PAM250
-from pymsascoring.score.impl import SumOfPairs
+from pymsascoring.score.impl.sumofpairs import SumOfPairs
 
-__author__  = "René Betancor"
+__author__  = "Rene Betancor"
 __license__ = "GPL"
 __version__ = "1.0-SNAPSHOT"
 __status__  = "Development"
