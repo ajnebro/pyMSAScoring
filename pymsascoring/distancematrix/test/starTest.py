@@ -5,7 +5,8 @@ Created on Sat Mar 18 16:02:34 2017
 @author: Migue
 """
 import unittest
-from pymsascoring.impl.star import Star
+
+from pymsascoring.score.impl.star import Star
 
 
 class Test(unittest.TestCase):

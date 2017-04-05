@@ -5,7 +5,9 @@ Author: Guillermo López
 """
 
 import unittest
-from pymsascoring.impl.entropy import Entropy
+
+from pymsascoring.score.impl import Entropy
+
 
 class EntropyTestCase(unittest.TestCase):
     def setUp(self):

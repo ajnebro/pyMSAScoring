@@ -2,9 +2,8 @@
 
 import unittest
 
-from pymsascoring.impl import percentageoftotallyconservedcolumns, percentageofnongaps
-from pymsascoring.impl.percentageoftotallyconservedcolumns import PercentageOfTotallyConservedColumns
-from pymsascoring.impl.percentageofnongaps import PercentageOfNonGaps
+from pymsascoring.score.impl import PercentageOfNonGaps
+from pymsascoring.score.impl import PercentageOfTotallyConservedColumns
 
 
 class PercentageOfTotallyConservedColumnsTest(unittest.TestCase):

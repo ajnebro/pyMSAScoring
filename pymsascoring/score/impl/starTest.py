@@ -1,8 +1,8 @@
-
 import unittest
-from pymsascoring.distancematrix.impl.pam250 import PAM250
+
 from pymsascoring.distancematrix.impl.blosum62 import Blosum62
-from pymsascoring.impl.star import Star
+from pymsascoring.distancematrix.impl.pam250 import PAM250
+from pymsascoring.score.impl.star import Star
 
 __author__ = "Miguel Angel"
 __license__ = "GNU"
