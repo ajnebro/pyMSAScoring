@@ -11,7 +11,7 @@ class Score:
     ((id1, SSSBA), (id2, HHALK), (id3, -HLGS), etc)
     
     Requirements:
-    - All the sequences in a msa must be aligned
+    - All the sequences in an msa must be aligned
     - The gap character is '-'
     
     """

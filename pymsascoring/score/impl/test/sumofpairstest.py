@@ -1,7 +1,13 @@
 import unittest
-from pymsascoring.distancematrix.impl.pam250 import PAM250
+
 from pymsascoring.distancematrix.impl.blosum62 import Blosum62
-from pymsascoring.impl.sumofpairs import SumOfPairs
+from pymsascoring.distancematrix.impl.pam250 import PAM250
+from pymsascoring.score.impl import SumOfPairs
+
+__author__  = "René Betancor"
+__license__ = "GPL"
+__version__ = "1.0-SNAPSHOT"
+__status__  = "Development"
 
 
 class SumOfPairsTestCase(unittest.TestCase):
