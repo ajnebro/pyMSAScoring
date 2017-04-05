@@ -14,8 +14,8 @@ logger = logging.getLogger(__name__)
 class SumOfPairs(Score):
     """ Class for returning the alignment score of >1 sequences given the substituion matrix. """
 
-    def __init__(self, substitution_matrix):
-        self.substitution_matrix = substitution_matrix()
+    def __init__(self, DM):
+        self.substitution_matrix = DM
         self.sequences = [] # list of sequences
 
     def get_seqs_from_list_of_pairs(self, msa):

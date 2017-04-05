@@ -16,6 +16,6 @@ if __name__ == '__main__':
     value = compute_score(score_method, msa)
     print(value)
 
-    score_method = SumOfPairs(Blosum62)
+    score_method = SumOfPairs(Blosum62())
     value = compute_score(score_method, msa)
     print(value)
