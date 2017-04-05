@@ -1,7 +1,7 @@
 __author__ = "Maria Jose Muñoz"
 __copyright__ = ""
 __credits__ = ["Maria Jose Muñoz"]
-__license__ = "GNU"
+__license__ = "GPL"
 __version__ = "1.0"
 __status__ = "Development"
 __email__ = ["marmungon@uma.es"]
