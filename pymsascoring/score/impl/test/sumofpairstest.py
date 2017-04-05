@@ -78,7 +78,7 @@ class SumOfPairsTestCase(unittest.TestCase):
         expected = 3
         self.assertEqual(expected, result)
 
-    def test_get_score_of_A_and_G(self):
+    def test_get_score_of_A_and_gap(self):
         logger.info("Test for get_score_of_two_chars()...")
         matrix = Blosum62()
         charA, charB = 'A', '-'
@@ -88,7 +88,7 @@ class SumOfPairsTestCase(unittest.TestCase):
         expected = -8
         self.assertEqual(expected, result)
 
-    def test_get_score_of_column(self):
+    def test_get_score_of_column_with_only_gaps(self):
         logger.info("Test for get_score_of_k_column()...")
         matrix = Blosum62()
         column = ['-', '-', '-']
