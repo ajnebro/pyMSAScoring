@@ -1,13 +1,14 @@
-from pymsascoring.score import Score
+from pymsascoring.score.score import Score
 import math
 
 __author__ = "Pablo Rodríguez"
 __copyright__ = ""
 __credits__ = ["Pablo Rodríguez", "Guillermo López"]
 __license__ = "GPL"
-__version__ = "1.0-SNAPSHOT"
+__version__ = "1.0"
 __status__ = "Development"
 __email__ = ["pabrod@uma.es", "guilopgar@uma.es"]
+
 
 class Entropy(Score):
 
@@ -26,15 +27,14 @@ class Entropy(Score):
         """
         n_cols = len(msa[0][1])                             # NUMBER OF CHARACTERS OF EVERY SEQUENCE
         total_seqs = len(msa)                               # NUMBER OF SEQUENCES TO COMPARE
-        score = 0                                             # RETURN VALUE
+        score = 0                                           # RETURN VALUE
 
         for i in range(n_cols):
             char_dict = self.get_dictionary(msa, i, total_seqs)
             current_entropy = self.get_column_entropy(char_dict)
-            score+=current_entropy
+            score += current_entropy
         
         return score
-
 
     def get_dictionary(self, list, pos, tot_seq):
         """Get Dictionary of characters for the MSA list at current position
@@ -43,25 +43,27 @@ class Entropy(Score):
         :param pos: - Current column to be analyzed
         :param tot_seq: - Number of sequences in the MSA
 
-        :return dict: - Dictionary in which the Keys are characters and the Value is the frequency that key appears on the current column
+        :return dict: - Dictionary in which the Keys are characters and the
+                Value is the frequency that key appears on the current column
         """
         dict = {}
         curr_chars = [0] * tot_seq
-        j=0
+        j = 0
         for item in list:
             curr_chars[j] = item[1][pos]
             if curr_chars[j] not in dict:
                 dict[curr_chars[j]] = 1/tot_seq
             else:
                 dict[curr_chars[j]] += 1 / tot_seq
-            j+=1
+            j += 1
 
         return dict
 
     def get_column_entropy(self, dict):
         """Calculates the Minimum Entropy for the current column dictionary
 
-        :param dict: - Dictionary in which the Keys are characters and the Value is the frequency that key appears on the current column
+        :param dict: - Dictionary in which the Keys are characters and the
+               Value is the frequency that key appears on the current column
 
         :return current_entropy: - Minimum Entropy score of the current column
         """
