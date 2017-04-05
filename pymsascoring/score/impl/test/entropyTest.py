@@ -6,7 +6,7 @@ Author: Guillermo López
 
 import unittest
 
-from pymsascoring.score.impl import Entropy
+from pymsascoring.score.impl.entropy import Entropy
 
 
 class EntropyTestCase(unittest.TestCase):
