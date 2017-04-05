@@ -1,6 +1,11 @@
 from pymsascoring.score import Score
 import operator
 from collections import Counter
+__author__ = "Daniel Torres Ramírez"
+__license__ = "GNU"
+__version__ = "1.0-SNAPSHOT"
+__status__ = "Development"
+__email__ = "dantorram@uma.es"
 
 
 class Star(Score):

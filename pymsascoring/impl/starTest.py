@@ -1,14 +1,14 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Mar 18 16:02:34 2017
 
-@author: Migue
-"""
 import unittest
 from pymsascoring.distancematrix.impl.pam250 import PAM250
 from pymsascoring.distancematrix.impl.blosum62 import Blosum62
 from pymsascoring.impl.star import Star
 
+__author__ = "Miguel Angel"
+__license__ = "GNU"
+__version__ = "1.0-SNAPSHOT"
+__status__ = "Development"
+__email__ = "miggalrui@uma.es"
 
 class Test(unittest.TestCase):
 
