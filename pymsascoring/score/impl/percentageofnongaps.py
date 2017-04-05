@@ -1,5 +1,5 @@
 
-from pymsascoring.score import Score
+from pymsascoring.score.score import Score
 
 __author__ = "Juan ignacio Álvarez"
 __license__ = "GPL"
