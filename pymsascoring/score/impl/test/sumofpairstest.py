@@ -1,5 +1,5 @@
 import unittest
-
+import logging
 from pymsascoring.substitutionmatrix.impl.blosum62 import Blosum62
 from pymsascoring.substitutionmatrix.impl.pam250 import PAM250
 from pymsascoring.score.impl.sumofpairs import SumOfPairs
@@ -10,6 +10,10 @@ __version__ = "1.0-SNAPSHOT"
 __status__  = "Development"
 __email__   = "renebetsar@uma.es"
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+
 class SumOfPairsTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -19,7 +23,7 @@ class SumOfPairsTestCase(unittest.TestCase):
         print("tearDown: FINALIZANDO TEST")
 
     def test_basic_score_of_12_with_PAM250(self):
-        print("Ejecutando test1")
+        logger.info("Test for compute()...")
         matrix = PAM250()
         msa = [('ID1',
                  'AA'),
@@ -27,11 +31,14 @@ class SumOfPairsTestCase(unittest.TestCase):
                  'AA'),
                 ('ID3',
                  'AA')]
-        final_score = SumOfPairs(matrix)
-        self.assertEqual(12, final_score.compute(msa))
+        sumofpairs = SumOfPairs(matrix)
+
+        result = sumofpairs.compute(msa)
+        expected = 12
+        self.assertEqual(expected, result)
 
     def test_basic_score_of_12_with_BLOSUM62(self):
-        print("Ejecutando test2")
+        logger.info("Test for compute()...")
         matrix = Blosum62()
         msa = [('ID1',
                  'AA'),
@@ -39,28 +46,57 @@ class SumOfPairsTestCase(unittest.TestCase):
                  'AA'),
                 ('ID3',
                  'AA')]
-        final_score = SumOfPairs(matrix)
-        self.assertEqual(24, final_score.compute(msa))
+        sumofpairs = SumOfPairs(matrix)
+
+        result = sumofpairs.compute(msa)
+        expected = 24
+        self.assertEqual(expected, result)
 
     def test_basic_score_with_gaps_BLOSUM62(self):
-        print("Ejecutando test3")
+        logger.info("Test for compute()...")
         matrix = Blosum62()
         msa = [('ID1',
                  'FA'),
                 ('ID2',
                  'A-')]
-        final_score = SumOfPairs(matrix)
-        self.assertEqual(-10, final_score.compute(msa))
+        sumofpairs = SumOfPairs(matrix)
+
+        result = sumofpairs.compute(msa)
+        expected = -10
+        self.assertEqual(expected, result)
 
     def test_only_gaps_with_BLOSUM62(self):
-        print("Ejecutando test4")
+        logger.info("Test for compute()...")
         matrix = Blosum62()
         msa = [('ID1',
                  '---'),
                 ('ID2',
                  '---')]
-        final_score = SumOfPairs(matrix)
-        self.assertEqual(3, final_score.compute(msa))
+        sumofpairs = SumOfPairs(matrix)
+
+        result = sumofpairs.compute(msa)
+        expected = 3
+        self.assertEqual(expected, result)
+
+    def test_get_score_of_A_and_G(self):
+        logger.info("Test for get_score_of_two_chars()...")
+        matrix = Blosum62()
+        charA, charB = 'A', '-'
+        sumofpairs = SumOfPairs(matrix)
+
+        result = sumofpairs.get_score_of_two_chars(charA, charB)
+        expected = -8
+        self.assertEqual(expected, result)
+
+    def test_get_score_of_column(self):
+        logger.info("Test for get_score_of_k_column()...")
+        matrix = Blosum62()
+        column = ['-', '-', '-']
+        sumofpairs = SumOfPairs(matrix)
+
+        result = sumofpairs.get_score_of_k_column(column)
+        expected = 3
+        self.assertEqual(expected, result)
 
 
 if __name__ == "__main__":
