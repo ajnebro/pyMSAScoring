@@ -8,7 +8,7 @@ __author__  = "Rene Betancor"
 __license__ = "GPL"
 __version__ = "1.0-SNAPSHOT"
 __status__  = "Development"
-
+__email__   = "renebetsar@uma.es"
 
 class SumOfPairsTestCase(unittest.TestCase):
 

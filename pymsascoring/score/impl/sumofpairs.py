@@ -6,6 +6,7 @@ __author__  = "Antonio Benitez"
 __license__ = "GPL"
 __version__ = "1.0-SNAPSHOT"
 __status__  = "Development"
+__email__   = "antonio.b@uma.es"
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

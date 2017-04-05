@@ -30,7 +30,7 @@ setup(
     author3='Antonio Benitez',
     author_email3='antonio.b@uma.es',
     author4='Rene Betancor',
-    author_email4='',
+    author_email4='renebetsar@uma.es',
     author5='Juan Ignacio Alvarez',
     author_email5='juaalvare@uma.es',
     author6='Guillermo Lopez',
