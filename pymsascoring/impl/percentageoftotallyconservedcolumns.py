@@ -1,7 +1,12 @@
 
-#Author:Juan Ignacio Álvarez
 
 from pymsascoring.score import Score
+
+__author__ = "Juan ignacio Álvarez"
+__license__ = "GPL"
+__version__ = "1.0-SNAPSHOT"
+__status__ = "Development"
+__email__ = "juaalvare@uma.es"
 
 class PercentageOfTotallyConservedColumns(Score):
     list = []
@@ -10,21 +15,32 @@ class PercentageOfTotallyConservedColumns(Score):
         self.list = a
 
     def percentage_of_totally_conserved_columns(self):
-    #We assume that all sequences have the same length if not so it will be analyzed only up to the length of the first
+        """
+                        This function redefines count the number of conserved columns of a list of MSA
+
+                        Args:
+                            count - the number of totals conserved columns
+                            count2 - number of equals letters  per column
+                            curr_char - colum of each MSA
+                            model - First sequence used as reference to starting the comparation
+                        Returns:
+                            score - Total score of MSA after calculating percentage of non gaps
+
+                        """
         count = 0
-        h = 0
+        curr_char = 0
         model=self.list[0]
     #Recorre each letter of the secuencies
-        while h < len(model[1]):
+        while curr_char < len(model[1]):
             count2 = 0
         #Recorre each secuence
-            for u in self.list:
+            for current_sequence in self.list:
                 temp = model[1]
-                temp2 = u[1]
+                temp2 = current_sequence[1]
                 #Comparing and count
-                if temp[h] == temp2[h] and temp2[h] != "-":
+                if temp[curr_char] == temp2[curr_char] and temp2[curr_char] != "-":
                     count2 += 1
                     if count2 == len(self.list):
                         count += 1
-            h += 1
+            curr_char += 1
         return count / len(model[1]) * 100;

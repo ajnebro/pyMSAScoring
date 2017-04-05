@@ -1,8 +1,3 @@
-__author__ = "Juan ignacio Álvarez"
-__license__ = "GPL"
-__version__ = "1.0-SNAPSHOT"
-__status__ = "Development"
-__email__ = "juaalvare@uma.es""
 
 import unittest
 
@@ -10,6 +5,11 @@ from pymsascoring.impl import percentageoftotallyconservedcolumns, percentageofn
 from pymsascoring.impl.percentageoftotallyconservedcolumns import PercentageOfTotallyConservedColumns
 from pymsascoring.impl.percentageofnongaps import PercentageOfNonGaps
 
+__author__ = "Juan ignacio Álvarez"
+__license__ = "GPL"
+__version__ = "1.0-SNAPSHOT"
+__status__ = "Development"
+__email__ = "juaalvare@uma.es"
 
 class PercentageOfTotallyConservedColumnsTest(unittest.TestCase):
     def setUp(self):
