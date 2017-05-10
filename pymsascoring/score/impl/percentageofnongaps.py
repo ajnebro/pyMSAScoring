@@ -1,5 +1,5 @@
-
 from pymsascoring.score.score import Score
+import logging
 
 __author__ = "Juan ignacio Álvarez"
 __license__ = "GPL"
@@ -7,39 +7,44 @@ __version__ = "1.0-SNAPSHOT"
 __status__ = "Development"
 __email__ = "juaalvare@uma.es"
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+
 class PercentageOfNonGaps(Score):
-    list = []
+    def __init__(self, msa):
+        self.msa = msa
 
-    def __init__(self, a):
-        self.list = a
+    def get_seqs_from_list_of_pairs(self, msa):
+        """ Get the second value of a list with multiple elements.
 
-    def  percentage_of_non_gaps(self):
+        :param msa: List of pairs -id and sequence- (i.e. "[('ID1', 'AB'), ('ID2', 'CD'), ('ID3', 'EF')]" ).
+        :return: List of sequences (i.e. "('AB', 'CD', 'EF' )").
         """
-                This function redefines count the number of non gaps of a list of MSA
 
-                Args:
-                    count - the number of totals non gaps
-                    count2 - number of gaps per column
-                    curr_char - colum of eash MSA
-                    model - First sequence used as reference to starting the comparation
-                    temp - temporal variable that contains the current sequence of the list 
-                Returns:
-                    score - Total score of MSA after calculating percentage of non gaps
+        sequences = []
 
-                """
-        count=0
-        curr_char=0
-        model=self.list[0]
+        logger.debug('List of pairs: {0}'.format(msa))
+        for i in range(len(msa)):
+            sequences.append(msa[i][1])
+        logger.debug('List of sequences: {0}'.format(sequences))
+        return sequences
 
-        while curr_char<len(model[1]):
-            count2=0
+    def percentage_of_non_gaps(self):
+        """ Compute the percentage of non-gaps between sequences.
 
-            for current_sequence in self.list:
-                temp=current_sequence[1]
-            # Comparing and count
-                if temp[curr_char]=="-":
-                    count2 +=1
-            if count2==0:
-                count+=1
-            curr_char+=1
-        return count/len(model[1])*100;
+        :param msa: List of pairs -id and sequence- (i.e. "[('ID1', 'AB'), ('ID2', 'CD'), ('ID3', 'EF')]" ).
+        :return: Percentage of non-gaps
+        """
+
+        t = 0  # Number of conserved columns
+        sequences = self.get_seqs_from_list_of_pairs(self.msa)  # List of sequences
+        tamVal = len(sequences[0])  # Lenght of the first sequence
+
+        for value in sequences:
+            for i in range(tamVal):
+                t += value[i].count('-')
+
+        logger.info('Total number of gaps: {0}'.format(t))
+        logger.info('Total number of non-gaps: {0}'.format(tamVal*2 - t))
+        return 100 - (t / (tamVal * len(sequences)) * 100)
