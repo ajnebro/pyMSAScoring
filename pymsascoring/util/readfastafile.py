@@ -26,3 +26,10 @@ class ReadFastaFile():
         vector.append((key, value))
         file.close()
         return vector
+
+    def save_fasta_serialized(fileName):
+        with open("serialized.txt", 'w') as output:
+            list = ReadFastaFile.read_fasta_file_as_list_of_pairs(fileName)
+
+            for (pair1, pair2) in list:
+                output.write(pair1 + pair2 + '\n')
