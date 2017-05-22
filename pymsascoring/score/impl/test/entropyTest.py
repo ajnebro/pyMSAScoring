@@ -31,22 +31,20 @@ class EntropyTestCase(unittest.TestCase):
         self.assertEqual(expected_value, received_value)
 
     def test_get_dictionary_of_a_five_letter_column(self):
-        msa = [("S1", "-"), ("S2", "A"), ("S3", "C"), ("S4", "G"), ("S5", "T")]
-        col = 0
-        tot_seqs = 5
+        column = ("-","A","C","G","T")
+        tot_seqs = len(column)
 
         expected_value = {"-": 1 / tot_seqs, "A": 1 / tot_seqs, "C": 1 / tot_seqs, "G": 1 / tot_seqs, "T": 1 / tot_seqs}
-        received_value = self.ent.get_dictionary(msa, col, tot_seqs)
+        received_value = self.ent.get_frecuencies(column)
 
         self.assertEqual(expected_value, received_value)
 
     def test_get_dictionary_of_a_gapped_column(self):
-        msa = [("S1", "A-"), ("S2", "--"), ("S3", "T-"), ("S4", "--")]
-        col = 1
-        tot_seqs = 4
+        column = ("-", "-", "-", "-", "-")
+        tot_seqs = len(column)
 
         expected_value = {"-": 1}
-        received_value = self.ent.get_dictionary(msa, col, tot_seqs)
+        received_value = self.ent.get_frecuencies(column)
 
         self.assertEqual(expected_value, received_value)
 
