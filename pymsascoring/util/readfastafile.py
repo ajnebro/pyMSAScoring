@@ -32,4 +32,4 @@ class ReadFastaFile():
             list = ReadFastaFile.read_fasta_file_as_list_of_pairs(fileName)
 
             for (pair1, pair2) in list:
-                output.write(pair1 + pair2 + '\n')
+                output.write(pair1 + ',' + pair2 + '\n')
