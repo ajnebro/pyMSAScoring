@@ -4,6 +4,7 @@ from pymsascoring.score.impl.entropy import Entropy
 from pymsascoring.score.impl.sumofpairs import SumOfPairs
 from pymsascoring.score.score import Score
 from pymsascoring.score.impl.percentageofnongaps import PercentageOfNonGaps
+from pymsascoring.score.impl.percentageoftotallyconservedcolumns import PercentageOfTotallyConservedColumns
 
 __author__ = "Antonio J. Nebro"
 __license__ = "GPL"
@@ -27,10 +28,14 @@ def compute_score(score : Score, msa) -> float:
 
 if __name__ == '__main__':
     msa = (("s1", "ACTG"), ("S2", "A-T-"))
+    #msa = (("a", "A"), ("b", "A"), ("c", "G"), ("d", "A"), ("e", "T"))
 
     pong = PercentageOfNonGaps(msa)
+    ping = PercentageOfTotallyConservedColumns(msa)
     percentage = pong.percentage_of_non_gaps()
+    conserved = ping.percentage_of_totally_conserved_columns()
     print("Percentage of non-gaps: {0} %".format(percentage))
+    print("Percentage of totally conserved columns: {0}".format(conserved))
 
     score_method = Entropy()
     value = compute_score(score_method, msa)
