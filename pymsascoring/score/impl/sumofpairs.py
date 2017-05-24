@@ -18,21 +18,6 @@ class SumOfPairs(Score):
     def __init__(self, substitution_matrix):
         self.substitution_matrix = substitution_matrix
 
-    def get_seqs_from_list_of_pairs(self, msa):
-        """ Get the second value of a list with multiple elements.
-
-        :param msa: List of pairs -id and sequence- (i.e. "[('ID1', 'AB'), ('ID2', 'CD'), ('ID3', 'EF')]" ).
-        :return: List of sequences (i.e. "('AB', 'CD', 'EF' )").
-        """
-
-        sequences = []
-
-        logger.debug('List of pairs: {0}'.format(msa))
-        for i in range(len(msa)):
-            sequences.append(msa[i][1])
-        logger.debug('List of sequences: {0}'.format(sequences))
-        return sequences
-
     def compute(self, msa):
         """ Compute the score of two or more sequences using the "Sum of Pairs" method.
 
@@ -40,7 +25,7 @@ class SumOfPairs(Score):
         :return: List of sequences.
         """
 
-        logger.info('Computing score...')
+        logger.debug('Computing score...')
         sequences = self.get_seqs_from_list_of_pairs(msa)
         length_sequence = len(sequences[0])  # length of the first sequence (= length to the second one, third one...)
         logger.debug('Lengh of a sequence: {0}'.format(length_sequence))
