@@ -1,3 +1,5 @@
+from pymsascoring.score.score import Score
+
 """
 This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -13,7 +15,6 @@ This program is free software: you can redistribute it and/or modify
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from pymsascoring.score.score import Score
 
 class WeightedSumOfPairs(Score):
     pass

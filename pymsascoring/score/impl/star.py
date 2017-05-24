@@ -1,7 +1,7 @@
 from pymsascoring.score.score import Score
 import operator
-
 from collections import Counter
+
 __author__ = "Daniel Torres Ramírez,Miguel Angel"
 __license__ = "GNU"
 __version__ = "1.0-SNAPSHOT"
