@@ -29,7 +29,7 @@ class Entropy(Score):
         :return score: Total score of MSA after calculating Minimum Entropy for each column
         """
 
-        logger.info('Computing score...')
+        logger.debug('Computing score...')
         sequences = self.get_seqs_from_list_of_pairs(msa)
         length_sequence = len(sequences[0])  # length of the first sequence (= length to the second one, third one...)
         logger.debug('Lengh of a sequence: {0}'.format(length_sequence))
