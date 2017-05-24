@@ -15,7 +15,6 @@ logger = logging.getLogger(__name__)
 
 
 class SumOfPairsTestCase(unittest.TestCase):
-
     def setUp(self):
         print("setUp: INICIANDO TEST")
 

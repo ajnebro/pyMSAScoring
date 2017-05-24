@@ -1,4 +1,3 @@
-
 import unittest
 from pymsascoring.substitutionmatrix.impl.pam250 import PAM250
 from pymsascoring.substitutionmatrix.impl.blosum62 import Blosum62
@@ -11,9 +10,7 @@ __status__ = "Development"
 __email__ = "miggalrui@uma.es"
 
 
-
 class Test(unittest.TestCase):
-
     def setUp(self):
         print("setUp: STARTING TEST")
 

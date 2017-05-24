@@ -9,6 +9,7 @@ __version__ = "1.0-SNAPSHOT"
 __status__ = "Development"
 __email__ = "juaalvare@uma.es"
 
+
 class PercentageOfTotallyConservedColumnsTest(unittest.TestCase):
     def setUp(self):
         print("setUp: Initiating Test")
@@ -24,7 +25,6 @@ class PercentageOfTotallyConservedColumnsTest(unittest.TestCase):
         result = self.per.percentage_of_totally_conserved_columns()
         self.assertEqual(result, expected)
 
-
     def test_percentage_of_non_gaps(self):
         print("Executing Test2")
         msa = [["S1", "-----A-A-A"], ["S2", "----A-A--A"]]
@@ -32,6 +32,7 @@ class PercentageOfTotallyConservedColumnsTest(unittest.TestCase):
         expected = 10
         result = self.per.percentage_of_non_gaps()
         self.assertEqual(result, expected)
+
 
 if __name__ == '__main__':
     unittest.main()
