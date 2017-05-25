@@ -1,4 +1,5 @@
 import unittest
+import logging
 from pymsascoring.substitutionmatrix.impl.pam250 import PAM250
 from pymsascoring.substitutionmatrix.impl.blosum62 import Blosum62
 from pymsascoring.score.impl.star import Star
@@ -9,63 +10,99 @@ __version__ = "1.0-SNAPSHOT"
 __status__ = "Development"
 __email__ = "miggalrui@uma.es"
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-class Test(unittest.TestCase):
+
+class SumOfPairsTestCase(unittest.TestCase):
     def setUp(self):
-        print("setUp: STARTING TEST")
+        print("setUp: RUNNING TEST")
+        self.star_PAM250 = Star(PAM250())
+        self.star_Blosum62 = Star(Blosum62())
 
     def tearDown(self):
-        print("tearDown: ENDING TEST")
+        print("tearDown: TEST ENDED")
 
-    # Test for a Blosum62 with 3 strings of 2 characters, comparing with the valid result
-    def test1(self):
-        print("Test1")
-        matrix = Blosum62()
-        seqs = [('sec1','AA'),('sec2','AC'), ('sec3', 'AC')]
-        final_score = Star(seqs, matrix)
-        self.assertEqual(30, final_score.sumStar())
+    def test_most_frequent_A_with_BLOSUM62(self):
+        logger.info("Test for test_most_frequent_with_BLOSUM62()...")
 
-    #  Test for a Blosum62 with 3 strings of 2 characters, comparing with the incorrect result
-    def test2(self):
-        print("Test2")
-        matrix = Blosum62()
-        seqs = [('sec1', 'AA'), ('sec2', 'AC'), ('sec3', 'AC')]
-        final_score = Star(seqs, matrix)
+        # setup
+        msa = [('sec1', 'AA'), ('sec2', 'AC'), ('sec3', 'AC')]
+
+        # results
+        result = self.star_Blosum62.compute(msa)
+        expected = 30
+
+        # check
+        self.assertEqual(expected, result)
+
+    def test_most_frequent_error_with_BLOSUM62(self):
+        logger.info("Test for test_most_frequent_error_with_BLOSUM62()...")
+
+        # setup
+        msa = [('sec1', 'AA'), ('sec2', 'AC'), ('sec3', 'AC')]
+
+        # results
+        result = self.star_Blosum62.compute(msa)
+        expected = 22
+
+        # check
         with self.assertRaises(Exception):
-            self.assertEqual(22, final_score.sumStar())
+            self.assertEqual(expected, result)
 
-    # Test for a PAM250 with 3 strings of 2 characters, comparing with the invalid result
-    def test3(self):
-        print("Test3")
-        matrix = PAM250()
-        seqs = [('sec1','AA'),('sec2','AC'), ('sec3', 'AC')]
-        final_score = Star(seqs, matrix)
-        self.assertEqual(28, final_score.sumStar())
+    def test_most_frequent_with_PAM250(self):
+        logger.info("Test for test_most_frequent_with_PAM250()...")
 
-    # Test for a pam250 with 3 strings of 2 characters, comparing with the invalid result
-    def test4(self):
-        print("Test4")
-        matrix = PAM250()
-        seqs = [('sec1','AA'),('sec2','AC'), ('sec3', 'AC')]
-        final_score = Star(seqs, matrix)
+        # setup
+        msa = [('sec1', 'AA'), ('sec2', 'AC'), ('sec3', 'AC')]
+
+        # results
+        result = self.star_PAM250.compute(msa)
+        expected = 28
+
+        # check
+        self.assertEqual(expected, result)
+
+    def test_most_frequent_error_with_PAM250(self):
+        logger.info("Test for test_most_frequent_error_with_PAM250()...")
+
+        # setup
+        msa = [('sec1', 'AA'), ('sec2', 'AC'), ('sec3', 'AC')]
+
+        # results
+        result = self.star_PAM250.compute(msa)
+        expected = 22
+
+        # check
         with self.assertRaises(Exception):
-            self.assertEqual(22, final_score.sumStar())
+            self.assertEqual(expected, result)
 
-    # Test for a PAM250 with 3 strings of 2 characters and a GAP, comparing with the valid result
-    def test5(self):
-        print("Test5")
-        matrix = PAM250()
-        seqs = [('sec1','AA'),('sec2','A-'), ('sec3', 'AC')]
-        final_score = Star(seqs, matrix)
-        self.assertEqual(-2, final_score.sumStar())
+    def test_most_frequent_gaps_with_PAM250(self):
+        logger.info("Test for test_most_frequent_gaps_with_PAM250()...")
 
-    # Test for a Blosum62 with 3 strings of 2 characters and a GAP, comparing with the valid result
-    def test6(self):
-        print("Test6")
-        matrix = Blosum62()
-        seqs = [('sec1','AA'),('sec2','A-'), ('sec3', 'AC')]
-        final_score = Star(seqs, matrix)
-        self.assertEqual(8, final_score.sumStar())
+        # setup
+        msa = [('sec1', 'AA'), ('sec2', 'A-'), ('sec3', 'AC')]
+
+        # results
+        result = self.star_PAM250.compute(msa)
+        expected = -2
+
+        # check
+        self.assertEqual(expected, result)
+
+    def test_most_frequent_gaps_with_BLOSUM62(self):
+        logger.info("Test for test_most_frequent_gaps_with_BLOSUM62()...")
+
+        # setup
+        msa = [('sec1', 'AA'), ('sec2', 'A-'), ('sec3', 'AC')]
+
+        # results
+        result = self.star_Blosum62.compute(msa)
+        expected = 8
+
+        # check
+        self.assertEqual(expected, result)
+
 
 if __name__ == "__main__":
     unittest.main()

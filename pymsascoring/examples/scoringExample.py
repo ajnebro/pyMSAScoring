@@ -2,6 +2,7 @@ from pymsascoring.substitutionmatrix.impl.blosum62 import Blosum62
 from pymsascoring.substitutionmatrix.impl.pam250 import PAM250
 from pymsascoring.score.impl.entropy import Entropy
 from pymsascoring.score.impl.sumofpairs import SumOfPairs
+from pymsascoring.score.impl.star import Star
 from pymsascoring.score.score import Score
 from pymsascoring.score.impl.percentageofnongaps import PercentageOfNonGaps
 from pymsascoring.score.impl.percentageoftotallyconservedcolumns import PercentageOfTotallyConservedColumns
@@ -28,7 +29,6 @@ def compute_score(score : Score, msa) -> float:
 
 if __name__ == '__main__':
     msa = (("s1", "ACTG"), ("S2", "A-T-"))
-    #msa = (("a", "A"), ("b", "A"), ("c", "G"), ("d", "A"), ("e", "T"))
 
     pong = PercentageOfNonGaps(msa)
     ping = PercentageOfTotallyConservedColumns(msa)
@@ -48,3 +48,11 @@ if __name__ == '__main__':
     score_method = SumOfPairs(PAM250())
     value = compute_score(score_method, msa)
     print("SumOfPairs score (PAM250): {0}".format(value))
+
+    score_method = Star(Blosum62())
+    value = compute_score(score_method, msa)
+    print("Star score (Blosum62): {0}".format(value))
+
+    score_method = Star(PAM250())
+    value = compute_score(score_method, msa)
+    print("Star score (PAM250): {0}".format(value))
