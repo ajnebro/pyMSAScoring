@@ -33,7 +33,7 @@ class Score:
         """ Get the sequences from an msa.
 
         :param msa: Python list containing pairs of (identifier, sequence)
-        :return: List of sequences (i.e. "('AB', 'CD', 'EF' )").
+        :return: List of sequences (i.e. "('AB', 'CD', 'EF' )") if all sequences are of the same length.
         """
 
         sequences = []
@@ -43,4 +43,8 @@ class Score:
             sequences.append(msa[i][1])
         logger.debug('List of sequences: {0}'.format(sequences))
 
-        return sequences
+        return sequences \
+            if all(len(sequences[0]) == len(seq) for seq in sequences) \
+            else self._raiser('Sequences are not of the same length.')
+
+    def _raiser(self, e): raise Exception(e)
