@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-class SumOfPairsTestCase(unittest.TestCase):
+class StarTestCase(unittest.TestCase):
     def setUp(self):
         print("setUp: RUNNING TEST")
         self.star_PAM250 = Star(PAM250())
