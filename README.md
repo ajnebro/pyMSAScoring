@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ajnebro/pyMSAScoring.svg?branch=master)](https://travis-ci.org/ajnebro/pyMSAScoring)
+
 ## PyMSA: Scoring Multiple Sequence Alignments with Python
 
 PyMSA is an open source software tool aimed at providing a number of scores for
