@@ -29,9 +29,10 @@ setup(
 
         'Intended Audience:: Science / Research',
 
+        'License :: OSI Approved :: MIT License',
+
         'Programming Language :: Python :: 3.6'
     ],
 
-    packages=find_packages(exclude=['test']),
-
+    packages=find_packages(exclude=['*Test']),
 )
