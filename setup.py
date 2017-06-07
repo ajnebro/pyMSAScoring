@@ -27,9 +27,11 @@ setup(
     classifiers=[
         'Development Status :: 3 - Alpha',
 
-        'Intended Audience:: Science / Research',
+        'Intended Audience :: Science/Research',
 
         'License :: OSI Approved :: MIT License',
+
+        'Topic :: Scientific/Engineering :: Bio-Informatics',
 
         'Programming Language :: Python :: 3.6'
     ],
