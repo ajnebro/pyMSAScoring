@@ -14,7 +14,7 @@ setup(
 
     version='1.0-SNAPSHOT',
 
-    description='A Scoring Multiple Sequence Alignments with Python',
+    description='Scoring Multiple Sequence Alignments with Python',
     long_description=long_description,
 
     url='https://github.com/ajnebro/pyMSAScoring',
@@ -38,16 +38,13 @@ setup(
     author7='Pablo Rodriguez',
     author_email7='pabrod@uma.es',
 
-    license='GNU',
+    license='MIT',
 
     classifiers=[
         'Development Status :: 3 - Alpha',
 
         'Intended Audience:: Science / Research',
 
-        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
-
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6'
     ],
 
