@@ -1,20 +1,9 @@
-from pymsascoring.substitutionmatrix.impl.blosum62 import Blosum62
-from pymsascoring.substitutionmatrix.impl.pam250 import PAM250
-from pymsascoring.score.impl.entropy import Entropy
-from pymsascoring.score.impl.sumofpairs import SumOfPairs
-from pymsascoring.score.impl.star import Star
-from pymsascoring.score.score import Score
-from pymsascoring.score.impl.percentageofnongaps import PercentageOfNonGaps
-from pymsascoring.score.impl.percentageoftotallyconservedcolumns import PercentageOfTotallyConservedColumns
-
-__author__ = "Antonio J. Nebro"
-__license__ = "GPL"
-__version__ = "1.0-SNAPSHOT"
-__status__ = "Development"
-__email__ = "antonio@lcc.uma.es"
+from pymsascoring.score import Score, Entropy, PercentageOfNonGaps, PercentageOfTotallyConservedColumns, Star, \
+    SumOfPairs
+from pymsascoring.substitutionmatrix import PAM250, Blosum62
 
 """
-This program is intended to show some examples of using the scores in pyMSA.
+This program is intended to show some examples of using the scores in pyMSAScoring.
 """
 
 
