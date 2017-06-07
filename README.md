@@ -23,6 +23,13 @@ To download PyMSA just clone the Git repository hosted in GitHub:
 ```
 git clone https://github.com/ajnebro/pyMSAScoring.git
 ```
+```
+python setup.py install
+```
+Alternatively, you can install with pip:
+```
+pip install pyMSAScoring
+```
 
 ## Authors
 * Maria José Muñoz - Project Manager
@@ -36,4 +43,4 @@ git clone https://github.com/ajnebro/pyMSAScoring.git
 * Antonio J. Nebro - Technology support
 
 ## License
-This project is licensed under the terms of the GNU - see the [LICENSE](https://github.com/ajnebro/pyMSAScoring/blob/master/LICENSE) file for details.
+This project is licensed under the terms of the MIT - see the [LICENSE](https://github.com/ajnebro/pyMSAScoring/blob/master/LICENSE) file for details.
