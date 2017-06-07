@@ -1,11 +1,11 @@
-[![Build Status](https://travis-ci.org/ajnebro/pyMSAScoring.svg?branch=master)](https://travis-ci.org/ajnebro/pyMSAScoring)
-[![Latest Version](https://pypip.in/version/pyMSAScoring/badge.svg)](https://pypi.python.org/pypi/pyMSAScoring/)
-
 ## PyMSA: Scoring Multiple Sequence Alignments with Python
+[![Build Status](https://travis-ci.org/ajnebro/pyMSAScoring.svg?branch=master)](https://travis-ci.org/ajnebro/pyMSAScoring)
+[![PyPI](https://img.shields.io/pypi/l/pyMSAScoring.svg)]()
+[![PyPI](https://img.shields.io/pypi/v/pyMSAScoring.svg)]()
 
 PyMSA is an open source software tool aimed at providing a number of scores for
 multiple sequence alignment (MSA) problems. This project is a development of the students of the
-third course students of the degree on Bioinformatics of the E.T.S. de Ingeniería Informática 
+third course students of the degree on Bioinformatics of the E.T.S. de Ingeniería Informática
 of the University of Málaga.
 
 ## Requirements
