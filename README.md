@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/ajnebro/pyMSAScoring.svg?branch=master)](https://travis-ci.org/ajnebro/pyMSAScoring)
+[![Latest Version](https://pypip.in/version/pyMSAScoring/badge.svg)](https://pypi.python.org/pypi/pyMSAScoring/)
 
 ## PyMSA: Scoring Multiple Sequence Alignments with Python
 
