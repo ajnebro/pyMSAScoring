@@ -19,24 +19,8 @@ setup(
 
     url='https://github.com/ajnebro/pyMSAScoring',
 
-    author='Antonio Jseus Nebro',
+    author='Maria Jose Muñoz, Antonio Benitez, Pablo Rodriguez, Antonio J. Nebro',
     author_email='ajnebro@uma.es',
-    author0='Maria Jose Muñoz',
-    author_email0='marmungon@uma.es',
-    author1='Daniel Torres',
-    author_email1='dantorram@uma.es',
-    author2='Miguel Angel Gallardo',
-    author_email2='miggalrui@uma.es',
-    author3='Antonio Benitez',
-    author_email3='antonio.b@uma.es',
-    author4='Rene Betancor',
-    author_email4='renebetsar@uma.es',
-    author5='Juan Ignacio Alvarez',
-    author_email5='juaalvare@uma.es',
-    author6='Guillermo Lopez',
-    author_email6='guilopgar@uma.es',
-    author7='Pablo Rodriguez',
-    author_email7='pabrod@uma.es',
 
     license='MIT',
 
