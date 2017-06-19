@@ -275,3 +275,4 @@ class SumOfPairs(Score):
         """
 
         return int(self.substitution_matrix.get_distance(charA, charB))
+

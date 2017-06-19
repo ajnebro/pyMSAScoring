@@ -1,7 +1,7 @@
 import logging
 import unittest
 
-from pymsascoring.score import SumOfPairs, Star, PercentageOfTotallyConservedColumns, Entropy
+from pymsascoring.score import SumOfPairs, Star, PercentageOfTotallyConservedColumns, Entropy, PercentageOfNonGaps
 from pymsascoring.substitutionmatrix import PAM250, Blosum62
 
 logging.basicConfig(level=logging.INFO)
@@ -207,23 +207,51 @@ class PercentageOfTotallyConservedColumnsTestCases(unittest.TestCase):
         self.assertEqual(result, expected)
 
 
-class PercentageOfTotallyConservedColumnsTestCases(unittest.TestCase):
+class PercentageOfNonGapsTestCases(unittest.TestCase):
     def setUp(self):
         print("setUp: RUNNING TEST")
 
     def tearDown(self):
         print("tearDown: TEST ENDED")
 
-    def test_percentage_of_totally_conserved_columns_100(self):
+    def test_percentage_of_non_gaps_100(self):
         logger.info("Test for test_percentage_of_totally_conserved_columns_100()...")
 
         # setup
         msa = [["S1", "AdddAAA"], ["S2", "AdddAAA"]]
-        self.per = PercentageOfTotallyConservedColumns(msa)
+        self.per = PercentageOfNonGaps(msa)
 
         # results
-        result = self.per.percentage_of_totally_conserved_columns()
+        result = self.per.percentage_of_non_gaps()
         expected = 100
+
+        # check
+        self.assertEqual(result, expected)
+
+    def test_percentage_of_non_gaps_50(self):
+        logger.info("Test for test_percentage_of_totally_conserved_columns_50()...")
+
+        # setup
+        msa = [["S1", "---dAAA"], ["S2", "Add----"]]
+        self.per = PercentageOfNonGaps(msa)
+
+        # results
+        result = self.per.percentage_of_non_gaps()
+        expected = 50
+
+        # check
+        self.assertEqual(result, expected)
+
+    def test_percentage_of_non_gaps_0(self):
+        logger.info("Test for test_percentage_of_totally_conserved_columns_0()...")
+
+        # setup
+        msa = [["S1", "------"], ["S2", "------"]]
+        self.per = PercentageOfNonGaps(msa)
+
+        # results
+        result = self.per.percentage_of_non_gaps()
+        expected = 0
 
         # check
         self.assertEqual(result, expected)
