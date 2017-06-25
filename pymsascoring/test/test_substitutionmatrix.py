@@ -4,9 +4,11 @@ from pymsascoring.substitutionmatrix import SubstitutionMatrix, PAM250, Blosum62
 
 
 class SubstutionMatrixTestCases(unittest.TestCase):
-
     def setUp(self):
-        pass
+        print("setUp: RUNNING SubstutionMatrixTestCases")
+
+    def tearDown(self):
+        print("tearDown: TEST ENDED")
 
     def test_should_default_gap_penalty_be_minus_eight(self):
         matrix = SubstitutionMatrix()
@@ -29,14 +31,13 @@ class SubstutionMatrixTestCases(unittest.TestCase):
 
         self.assertEqual(1, matrix.get_distance('-', '-'))
 
-if __name__ == '__main__':
-    unittest.main()
-
 
 class PAM250TestCases(unittest.TestCase):
-
     def setUp(self):
-        pass
+        print("setUp: RUNNING PAM250TestCases")
+
+    def tearDown(self):
+        print("tearDown: TEST ENDED")
 
     def test_should_default_gap_penalty_be_minus_eight(self):
         matrix = PAM250()
@@ -76,12 +77,11 @@ class PAM250TestCases(unittest.TestCase):
 
 
 class Blosum62TestCases(unittest.TestCase):
-
     def setUp(self):
-        pass
+        print("setUp: RUNNING Blosum62TestCases")
 
-    def setUp(self):
-        pass
+    def tearDown(self):
+        print("tearDown: TEST ENDED")
 
     def test_should_default_gap_penalty_be_minus_eight(self):
         matrix = Blosum62()
@@ -118,3 +118,7 @@ class Blosum62TestCases(unittest.TestCase):
 
         with self.assertRaises(Exception):
             matrix.get_distance('J', 'A')
+
+
+if __name__ == '__main__':
+    unittest.main()
