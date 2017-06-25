@@ -1,15 +1,12 @@
-
 class SubstitutionMatrix:
     """ Class representing a substitution matrix, such as PAM250, Blosum62, etc.
     
     Requirements:
     - The gap character is '-'
     """
+
     def __init__(self, gap_penalty=-8):
         self.gap_penalty = gap_penalty
-
-    def get_distance_matrix(self):
-        pass
 
     def get_distance(self, char1, char2):
         """ Returns the distance between two symbols
@@ -18,6 +15,7 @@ class SubstitutionMatrix:
         :param char2: 
         :return: the distance value
         """
+
         if char1 is '-' and char2 is '-':
             result = 1
         elif char1 is '-' or char2 is '-':
@@ -33,6 +31,9 @@ class SubstitutionMatrix:
 
         return result
 
+    def get_distance_matrix(self):
+        pass
+
     def get_gap_penalty(self) -> float:
         return self.gap_penalty
 
@@ -42,6 +43,7 @@ class PAM250(SubstitutionMatrix):
 
     Reference: https://en.wikipedia.org/wiki/Point_accepted_mutation
     """
+
     def __init__(self, gap_penalty=-8):
         super(PAM250, self).__init__(gap_penalty)
         self.distance_matrix = \

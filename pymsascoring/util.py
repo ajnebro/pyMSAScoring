@@ -1,7 +1,7 @@
 class ReadFastaFile():
+    """ Read a Fasta file and return a list of pairs --> [(key, value), (key, value)]
     """
-    Read a Fasta file and return a list of pairs --> [(key, value), (key, value)]
-    """
+
     def read_fasta_file_as_list_of_pairs(fileName):
         vector = []
         key = ''
@@ -12,7 +12,7 @@ class ReadFastaFile():
                     if key != '':
                         vector.append((key, value))
                     key = line[1:].rstrip()
-                    value = ''  # aun no hemos leido ninguna secuencia
+                    value = ''
                 else:
                     value += line.rstrip()
         vector.append((key, value))

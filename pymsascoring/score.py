@@ -16,8 +16,8 @@ class Score:
     Requirements:
     - All the sequences in an msa must be aligned
     - The gap character is '-'
-    
     """
+
     def compute(self, msa) -> float:
         """ Compute the score 
         
@@ -113,53 +113,6 @@ class Entropy(Score):
 
         return current_entropy
 
-
-class PercentageOfNonGaps(Score):
-    def __init__(self, msa):
-        self.msa = msa
-
-    def percentage_of_non_gaps(self):
-        """ Compute the percentage of non-gaps between sequences.
-
-        :param msa: List of pairs -id and sequence- (i.e. "[('ID1', 'AB'), ('ID2', 'CD'), ('ID3', 'EF')]" ).
-        :return: Percentage of non-gaps
-        """
-
-        t = 0  # Number of conserved columns
-        sequences = self.get_seqs_from_list_of_pairs(self.msa)  # List of sequences
-        tamVal = len(sequences[0])  # Lenght of the first sequence
-
-        for value in sequences:
-            for i in range(tamVal):
-                t += value[i].count('-')
-
-        logger.info('Total number of gaps: {0}'.format(t))
-        logger.info('Total number of non-gaps: {0}'.format(tamVal*2 - t))
-        return 100 - (t / (tamVal * len(sequences)) * 100)
-
-
-class PercentageOfTotallyConservedColumns(Score):
-    def __init__(self, msa):
-        self.msa = msa
-
-    def percentage_of_totally_conserved_columns(self):
-        sequences = self.get_seqs_from_list_of_pairs(self.msa)  # List of sequences
-        length_sequence = len(sequences[0])
-
-        column = []
-        percentage = 0
-
-        for k in range(length_sequence):
-            for value in sequences:
-                column.append(value[k])
-            if len(set(column)) <= 1:
-                percentage += 1
-            column.clear()
-
-        logger.info('Total number of conserved colums: {0} out of {1}'.format(percentage, length_sequence))
-        return percentage / length_sequence * 100
-
-
 class Star(Score):
     def __init__(self, substitution_matrix):
         self.substitution_matrix = substitution_matrix
@@ -212,8 +165,6 @@ class Star(Score):
 
 
 class SumOfPairs(Score):
-    """ Class for returning the alignment score of >1 sequences given the substituion matrix. """
-
     def __init__(self, substitution_matrix):
         self.substitution_matrix = substitution_matrix
 
@@ -241,6 +192,14 @@ class SumOfPairs(Score):
 
         return final_score
 
+    def possible_combinations(self, column):
+        """ Compare each element of the list 'column' with the others only one time.
+
+        :param column: List of chars (i.e. ['A','B','C'].
+        :return: 2-length tuples with no repeated elements.
+        """
+        return itertools.combinations(column, 2)
+
     def get_score_of_k_column(self, column):
         """ Compare each element of the list 'column' with the others only one time.
 
@@ -258,14 +217,6 @@ class SumOfPairs(Score):
 
         return score_of_column
 
-    def possible_combinations(self, column):
-        """ Compare each element of the list 'column' with the others only one time.
-
-        :param column: List of chars (i.e. ['A','B','C'].
-        :return: 2-length tuples with no repeated elements.
-        """
-        return itertools.combinations(column, 2)
-
     def get_score_of_two_chars(self, charA, charB):
         """ Return the score of two chars using the substituion matrix.
 
@@ -275,3 +226,49 @@ class SumOfPairs(Score):
         """
 
         return int(self.substitution_matrix.get_distance(charA, charB))
+
+
+class PercentageOfNonGaps(Score):
+    def __init__(self, msa):
+        self.msa = msa
+
+    def percentage_of_non_gaps(self):
+        """ Compute the percentage of non-gaps between sequences.
+
+        :param msa: List of pairs -id and sequence- (i.e. "[('ID1', 'AB'), ('ID2', 'CD'), ('ID3', 'EF')]" ).
+        :return: Percentage of non-gaps
+        """
+
+        t = 0  # Number of conserved columns
+        sequences = self.get_seqs_from_list_of_pairs(self.msa)  # List of sequences
+        tamVal = len(sequences[0])  # Lenght of the first sequence
+
+        for value in sequences:
+            for i in range(tamVal):
+                t += value[i].count('-')
+
+        logger.info('Total number of gaps: {0}'.format(t))
+        logger.info('Total number of non-gaps: {0}'.format(tamVal*2 - t))
+        return 100 - (t / (tamVal * len(sequences)) * 100)
+
+
+class PercentageOfTotallyConservedColumns(Score):
+    def __init__(self, msa):
+        self.msa = msa
+
+    def percentage_of_totally_conserved_columns(self):
+        sequences = self.get_seqs_from_list_of_pairs(self.msa)  # List of sequences
+        length_sequence = len(sequences[0])
+
+        column = []
+        percentage = 0
+
+        for k in range(length_sequence):
+            for value in sequences:
+                column.append(value[k])
+            if len(set(column)) <= 1:
+                percentage += 1
+            column.clear()
+
+        logger.info('Total number of conserved colums: {0} out of {1}'.format(percentage, length_sequence))
+        return percentage / length_sequence * 100
