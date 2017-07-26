@@ -37,6 +37,9 @@ class Score:
         """
         return int(substitution_matrix.get_distance(char_a, char_b))
 
+    def get_name(self) -> str:
+        return type(self).__name__
+
     def _raiser(self, e): raise Exception(e)
 
 

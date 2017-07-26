@@ -43,7 +43,7 @@ def run_all_scores(msa: list) -> None:
 
     score_method = SumOfPairs(PAM250())
     value = compute_score(score_method, sequences)
-    logger.info("SumOfPairs score (PAM250): {0}".format(value))
+    logger.info("{0} score (PAM250): {1}".format(score_method.get_name(), value))
 
     score_method = Star(Blosum62())
     value = compute_score(score_method, sequences)
