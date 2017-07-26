@@ -1,9 +1,9 @@
 import unittest
 
-from pymsascoring.substitutionmatrix import SubstitutionMatrix, PAM250, Blosum62
+from pymsa.substitutionmatrix import SubstitutionMatrix, PAM250, Blosum62
 
 
-class SubstutionMatrixTestCases(unittest.TestCase):
+class SubstitutionMatrixTestCases(unittest.TestCase):
     def setUp(self):
         print("setUp: RUNNING SubstutionMatrixTestCases")
 
@@ -118,7 +118,6 @@ class Blosum62TestCases(unittest.TestCase):
 
         with self.assertRaises(Exception):
             matrix.get_distance('J', 'A')
-
 
 if __name__ == '__main__':
     unittest.main()

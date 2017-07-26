@@ -1,4 +1,4 @@
-## PyMSA: Scoring Multiple Sequence Alignments with Python
+# PyMSA: Scoring Multiple Sequence Alignments with Python
 [![Build Status](https://travis-ci.org/ajnebro/pyMSAScoring.svg?branch=master)](https://travis-ci.org/ajnebro/pyMSAScoring)
 [![PyPI](https://img.shields.io/pypi/l/pyMSAScoring.svg)]()
 [![PyPI](https://img.shields.io/pypi/v/pyMSAScoring.svg)]()
@@ -8,13 +8,16 @@ multiple sequence alignment (MSA) problems. This project is a development of the
 third course students of the degree on Bioinformatics of the E.T.S. de Ingeniería Informática
 of the University of Málaga.
 
-## Score
-The scores that are currently available  are:
-* Sum of pairs
-* Star
-* Minimum entropy
-* Percentage of non-gaps
-* Percentage of totally conserved columns
+## Features
+The scores that are currently available are:
+* Sum of pairs,
+* Star,
+* Minimum entropy,
+* Percentage of non-gaps *and*
+* Percentage of totally conserved columns.
+
+## Usage
+An example of running all the included scores is located in the [`scoringExample`](pymsa/scoringExample.py) file.
 
 ## Downloading
 To download PyMSA just clone the Git repository hosted in GitHub:
@@ -22,13 +25,19 @@ To download PyMSA just clone the Git repository hosted in GitHub:
 $ git clone https://github.com/ajnebro/pyMSAScoring.git
 $ python setup.py install
 ```
+
 Alternatively, you can install with pip:
 ```bash
 $ pip install pyMSAScoring
 ```
 
 ## Requirements
-PyMSA has been developed with Python 3.6.0 :: [Anaconda](https://www.continuum.io) 4.3.0 (x86_64). 
+PyMSA has been developed with Python 3.6.0 :: [Anaconda](https://www.continuum.io) 4.3.0 (x86_64).
+
+To install all dependencies use:
+```bash
+$ pip install -r requirements.txt
+```
 
 ## Authors
 ### Active development team 
