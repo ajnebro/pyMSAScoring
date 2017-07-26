@@ -19,13 +19,13 @@ The scores that are currently available are:
 ## Downloading
 To download PyMSA just clone the Git repository hosted in GitHub:
 ```bash
-$ git clone https://github.com/ajnebro/pyMSAScoring.git
+$ git clone https://github.com/ajnebro/pyMSA.git
 $ python setup.py install
 ```
 
 Alternatively, you can install with pip:
 ```bash
-$ pip install pyMSAScoring
+$ pip install pyMSA
 ```
 
 ## Requirements
@@ -42,14 +42,14 @@ An example of running all the included scores is located in the [`scoringExample
 
 ## History
 ### Last changes (July 2017)
-* `pymsascoring` project is now renamed to `pymsa`!
+* `pyMSAScoring` project is now renamed to `pyMSA`!
 * All the scores are now computed using a **list of sequences instead of a list of pairs**.
 * Tests for [Percentage of non-gaps](pymsa/test/test_scoring.py) added.
 
 ## Authors
 ### Active development team 
-* Antonio Benítez <antonio.b@uma.es> - Developer of the Sum of Pairs score
-* Antonio J. Nebro <antonio@lcc.uma.es> - Technology support
+* Antonio Benítez <antonio.b@uma.es>
+* Antonio J. Nebro <antonio@lcc.uma.es>
 
 ### Thanks to
 * Maria José Muñoz - Project Manager
