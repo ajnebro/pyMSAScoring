@@ -16,9 +16,6 @@ The scores that are currently available are:
 * Percentage of non-gaps *and*
 * Percentage of totally conserved columns.
 
-## Usage
-An example of running all the included scores is located in the [`scoringExample`](pymsa/scoringExample.py) file.
-
 ## Downloading
 To download PyMSA just clone the Git repository hosted in GitHub:
 ```bash
@@ -38,6 +35,16 @@ To install all dependencies use:
 ```bash
 $ pip install -r requirements.txt
 ```
+
+## Usage
+An example of running all the included scores is located in the [`scoringExample`](pymsa/scoringExample.py) file.
+
+
+## History
+### Last changes (July 2017)
+* `pymsascoring` project is now renamed to `pymsa`!
+* All the scores are now computed using a **list of sequences instead of a list of pairs**.
+* Tests for [Percentage of non-gaps](pymsa/test/test_scoring.py) added.
 
 ## Authors
 ### Active development team 
