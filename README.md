@@ -1,4 +1,10 @@
-# PyMSA: Scoring Multiple Sequence Alignments with Python
+<p align="center">
+  <br/>
+  <img src="https://raw.githubusercontent.com/ajnebro/pyMSAScoring/master/resources/pymsa.png" alt="PyMSA">
+  <br/>
+</p>
+
+# Scoring Multiple Sequence Alignments with Python
 [![Build Status](https://travis-ci.org/ajnebro/pyMSAScoring.svg?branch=master)](https://travis-ci.org/ajnebro/pyMSAScoring)
 [![PyPI](https://img.shields.io/pypi/l/pyMSAScoring.svg)]()
 [![PyPI](https://img.shields.io/pypi/v/pyMSAScoring.svg)]()
