@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='pyMSAScoring',
+    name='pyMSA',
     version='0.1.5',
     description='Scoring Multiple Sequence Alignments with Python',
     url='https://github.com/ajnebro/pyMSAScoring',
-    author='Maria Jose Muñoz, Antonio Benitez, Pablo Rodriguez, Antonio J. Nebro',
+    author='Antonio Benitez, Antonio J. Nebro',
     author_email='ajnebro@uma.es',
     license='MIT',
     classifiers=[
